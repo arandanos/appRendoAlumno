@@ -1,0 +1,7 @@
+ion-buttons[slot="start"]{
+    margin-left: 15px;
+}
+
+.pictogram-header{
+    max-width: var(--pictogram-width);
+}
