@@ -1,7 +1,12 @@
 ion-buttons[slot="start"]{
-    margin-left: 15px;
+    /* margin-left: 15px; */
+    padding: 10px;
 }
 
 .pictogram-header{
     max-width: var(--pictogram-width);
+}
+
+ion-header, ion-toolbar{
+    min-height: 100px;
 }

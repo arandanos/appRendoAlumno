@@ -234,5 +234,6 @@ http://ionicframework.com/docs/theming/ */
     --ion-card-background: #1e1e1e;
 
     --pictogram-width: 60px;
+    --ion-safe-area-top: 22px;
   }
 }
