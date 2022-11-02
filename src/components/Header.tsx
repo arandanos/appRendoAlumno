@@ -5,9 +5,9 @@ import { useParams } from 'react-router';
   import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, homeOutline, homeSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
   import './Header.css';
   
-const Header: React.FC<{ name: string; pictogram:string }> = ( props: {name: string, pictogram: string} ) => {
+const Header: React.FC<{ name: string; pictogram: string }> = ( args: {name: string, pictogram: string} ) => {
     // const { name } = useParams<>();
-  
+
     return (
         <IonHeader>
         <IonToolbar color="secondary" class='center-content'>
@@ -19,11 +19,11 @@ const Header: React.FC<{ name: string; pictogram:string }> = ( props: {name: str
             </IonFabButton>
           </IonButtons>
           
-          <IonImg slot='start' class="pictogram-header" src={props.pictogram} ></IonImg>
+          <IonImg slot='start' class="pictogram-header" src={args.pictogram} ></IonImg>
          
           <IonTitle>
             <IonRow class="ion-text-wrap">
-              {props.name}
+              {args.name}
             </IonRow>            
           </IonTitle>
         </IonToolbar>

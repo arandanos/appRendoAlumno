@@ -1,1 +1,16 @@
-@import './base.css';
+.button-grid {
+    min-height: 100%;
+    display: grid;
+    align-content: space-evenly;
+}
+
+ion-row{
+    min-width: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+
+ion-col{
+    min-height: fit-content;
+    max-height: fit-content;
+}

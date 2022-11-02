@@ -233,7 +233,8 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-card-background: #1e1e1e;
 
-    --pictogram-width: 60px;
+    --pictogram-medium-width: 60px;
+    --pictogram-large-width: 74px;
     --ion-safe-area-top: 22px;
   }
 }

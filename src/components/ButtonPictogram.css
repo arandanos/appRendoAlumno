@@ -1,0 +1,30 @@
+.button-pictogram-square {
+    width: 120px;
+    max-width: 120px;
+    height: 120px;
+    max-height: 120px;
+    --padding-start: 0;
+    --padding-end: 0;
+    text-transform: capitalize;
+}
+
+.button-pictogram {
+    --padding-start: 0;
+    --padding-end: 0;
+    text-transform: capitalize;
+}
+
+.pictogram-on-button{
+    max-width: var(--pictogram-large-width);
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+ion-grid{
+    height: 100%;
+    width: 100%;
+}
+
+.large-text{
+   font-size: large;
+}
