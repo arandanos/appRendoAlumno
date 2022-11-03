@@ -23,6 +23,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Tareas from './pages/Tareas';
+import SelectClass from './pages/SelectClass';
 
 setupIonicReact();
 
@@ -34,6 +35,7 @@ const App: React.FC = () => {
           <IonRouterOutlet id="main">
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/tareas" component={Tareas}></Route>
+            <Route exact path="/elige_clase" component={SelectClass}></Route>
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>

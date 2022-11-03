@@ -2,7 +2,7 @@
 import { useParams } from 'react-router';
   
   import { useLocation } from 'react-router-dom';
-  import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, homeOutline, homeSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+  import { homeOutline } from 'ionicons/icons';
   import './Header.css';
   
 const Header: React.FC<{ name: string; pictogram: string }> = ( args: {name: string, pictogram: string} ) => {
@@ -14,8 +14,8 @@ const Header: React.FC<{ name: string; pictogram: string }> = ( args: {name: str
           
           <IonButtons slot="start">
             {/* <IonMenuButton /> */}
-            <IonFabButton color="primary" href='/page/Home'>
-              <IonIcon  icon={homeOutline}></IonIcon>              
+            <IonFabButton color="primary" href='/'>
+              <IonIcon icon={homeOutline}></IonIcon>              
             </IonFabButton>
           </IonButtons>
           

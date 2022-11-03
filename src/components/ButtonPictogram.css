@@ -18,11 +18,14 @@
     max-width: var(--pictogram-large-width);
     margin: auto;
     margin-bottom: 5px;
+    margin-top: 5px;
 }
 
-ion-grid{
-    height: fit-content;
-    width: 100%;
+.button-pictogram .pictogram-on-button{
+    margin: 0 auto;
+}
+
+.button-pictogram .large-text{
     margin: auto;
 }
 

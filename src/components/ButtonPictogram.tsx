@@ -21,7 +21,7 @@ const ButtonPictogram: React.FC<{ label: string; pictogram: string, square: bool
   var ButtonContent = () => {
     if (props.square) {
       return (
-        <IonGrid>
+        <IonGrid class='button-grid'>
           <ButtonElements/>
         </IonGrid>
       );
