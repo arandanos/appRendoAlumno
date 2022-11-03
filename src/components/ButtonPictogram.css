@@ -1,16 +1,16 @@
 .button-pictogram-square {
-    width: 120px;
-    max-width: 120px;
-    height: 120px;
-    max-height: 120px;
+    width: var(--large-square-button-width);
+    max-width: var(--large-square-button-width);
+    height: var(--large-button-height);
+    max-height: var(--large-button-height);
     --padding-start: 0;
     --padding-end: 0;
     text-transform: capitalize;
 }
 
 .button-pictogram {
-    --padding-start: 0;
-    --padding-end: 0;
+    height: fit-content;
+    width: var(--large-button-width);
     text-transform: capitalize;
 }
 
@@ -21,8 +21,9 @@
 }
 
 ion-grid{
-    height: 100%;
+    height: fit-content;
     width: 100%;
+    margin: auto;
 }
 
 .large-text{

@@ -16,7 +16,7 @@ const Tareas: React.FC = () => {
       <Header name="Tareas" pictogram='https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false'/>
       <IonContent fullscreen>
         {/*  NO IMPLEMENTAR AUN - CREAR NUEVA PAGINA PARA COMANDA DE COCINA */}
-        {/* <ButtonPictogram label='Comanda' pictogram='' square={false} href="#"/> */}
+        {/* <ButtonPictogram label='Comanda' pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={false} href="#"/> */}
       </IonContent>
 
       <BottomNav/>

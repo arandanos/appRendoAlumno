@@ -74,6 +74,21 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** variables **/
+  --pictogram-medium-width: 60px;
+  --pictogram-large-width: 74px;
+  --ion-safe-area-top: 22px;
+  --large-square-button-width: 120px;
+  --large-button-width: 200px;
+  --large-button-height: 120px;
+}
+
+@media screen and (min-width: 268px){
+  :root{
+    --large-square-button-width: 100px;
+    /* --large-button-height: 100px; */
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -233,8 +248,5 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-card-background: #1e1e1e;
 
-    --pictogram-medium-width: 60px;
-    --pictogram-large-width: 74px;
-    --ion-safe-area-top: 22px;
   }
 }
