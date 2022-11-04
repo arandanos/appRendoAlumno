@@ -8,21 +8,47 @@ import Header from '../components/Header';
 import ButtonPictogram from '../components/ButtonPictogram';
 import BottomNav from '../components/BottomNav';
 import { API_URL } from '../variables';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const SelectClass: React.FC = () => {
 
-  const { name } = useParams<{ name: string; }>();
+  const [ clases, setClases ] = useState([])
+
+  const sendGetRequest = () => {
+
+    return axios({
+      url: API_URL + "accesible_element",
+      method: 'get'
+    }).then(response => {
+  
+      console.log(response.data);
+      return response.data;
+    })
+  };
+
+  useEffect(() => {
+    sendGetRequest().then(data => setClases(data.clases));
+  }, []);
 
   return (
     <IonPage>
       <Header name="Elige Clase" pictogram='https://api.arasaac.org/api/pictograms/9815?resolution=500&download=false'/>
       <IonContent fullscreen>
         {/* <IonTitle>Elige una clase en la que vas a realizar la comanda realizar la comanda.</IonTitle> */}
+        
         <IonGrid class='button-grid grid-with-bottom-nav'>
-          <IonRow class='ion-justify-content-center'>
-            <ButtonPictogram label='Clase A' pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={false} href="#" />
-          </IonRow>
-          <IonRow class='ion-justify-content-center'>
+          {
+              clases.map(clase => {
+                return (
+                  <IonRow class='ion-justify-content-center'>
+                    <ButtonPictogram label={clase['_text']} pictogram={clase['_pictogram']} square={false} href="#" />
+                  </IonRow>
+                );
+              })
+            }
+          
+          {/* <IonRow class='ion-justify-content-center'>
             <ButtonPictogram label='Clase B' pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={false} href="#" />
           </IonRow>
           <IonRow class='ion-justify-content-center'>
@@ -30,7 +56,7 @@ const SelectClass: React.FC = () => {
           </IonRow>
           <IonRow class='ion-justify-content-center'>
             <ButtonPictogram label='Clase D' pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={false} href="#" />
-          </IonRow>
+          </IonRow> */}
         </IonGrid>
       </IonContent>
 

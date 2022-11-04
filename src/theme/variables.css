@@ -85,12 +85,15 @@ http://ionicframework.com/docs/theming/ */
   --bottom-nav-height: 60px;
 }
 
-@media screen and (max-width: 268px){
+
+@media only screen and (max-width: 266px){
   :root{
     --large-square-button-width: 100px;
-    /* --large-button-height: 100px; */
-    }
+  }
 }
+/* @media (max-width: 266px){
+  
+} */
 
 @media (prefers-color-scheme: dark) {
   /*
