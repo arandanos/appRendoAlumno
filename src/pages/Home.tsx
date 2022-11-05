@@ -1,6 +1,4 @@
-import { IonButton, IonButtons, IonContent, IonPage, IonTitle, IonImg, IonRow, IonGrid, IonCol } from '@ionic/react';
-import { useParams } from 'react-router';
-import { homeOutline, checkmark, arrowBackOutline, arrowForwardOutline } from 'ionicons/icons';
+import { IonContent, IonPage, IonRow, IonGrid, IonCol } from '@ionic/react';
 import './Page.css';
 import '../components/ButtonPictogram'
 import Header from '../components/Header';

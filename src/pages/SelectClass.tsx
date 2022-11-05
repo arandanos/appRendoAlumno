@@ -1,8 +1,3 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonButton, IonIcon, IonRippleEffect, IonImg, IonRow, IonCol, IonFabList, IonFabButton, IonFab, IonGrid } from '@ionic/react';
-import { useParams } from 'react-router';
-import ExploreContainer from '../components/ExploreContainer';
-import { homeOutline, checkmark, arrowBackOutline, arrowForwardOutline } from 'ionicons/icons';
-// import './Page.css';
 import './Page.css';
 import Header from '../components/Header';
 import ButtonPictogram from '../components/ButtonPictogram';
@@ -10,15 +5,19 @@ import BottomNav from '../components/BottomNav';
 import { API_URL } from '../variables';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { IonPage, IonContent, IonGrid, IonRow } from '@ionic/react';
 
 const SelectClass: React.FC = () => {
 
   const [ clases, setClases ] = useState([])
+  const [ currentPage, setCurrentPage ] = useState(0);
+  const [itemsPerPage] = useState(4);
+  const [totalPages, setTotalPages] = useState(0);
 
   const sendGetRequest = () => {
 
     return axios({
-      url: API_URL + "accesible_element",
+      url: API_URL + "classroom",
       method: 'get'
     }).then(response => {
   
@@ -27,9 +26,30 @@ const SelectClass: React.FC = () => {
     })
   };
 
-  useEffect(() => {
-    sendGetRequest().then(data => setClases(data.clases));
-  }, []);
+  useEffect(() =>{
+    sendGetRequest().then(data => {
+      setTotalPages(Math.ceil(data.length / itemsPerPage))
+      setClases(data.slice(currentPage*itemsPerPage, currentPage*itemsPerPage + itemsPerPage))
+    })
+    
+  }, [currentPage])
+
+  const handleNextClick = () => {
+    if((currentPage+1) > totalPages-1){
+      setCurrentPage(0);
+    } else {
+      setCurrentPage(currentPage+1);
+    }
+
+  };
+  const handlePrevClick = () => {
+    if((currentPage-1) < 0){
+      setCurrentPage(totalPages-1);
+    } else {
+      setCurrentPage(currentPage-1);
+    }
+
+  };
 
   return (
     <IonPage>
@@ -39,28 +59,19 @@ const SelectClass: React.FC = () => {
         
         <IonGrid class='button-grid grid-with-bottom-nav'>
           {
-              clases.map(clase => {
-                return (
-                  <IonRow class='ion-justify-content-center'>
-                    <ButtonPictogram label={clase['_text']} pictogram={clase['_pictogram']} square={false} href="#" />
-                  </IonRow>
-                );
-              })
-            }
+            clases.map(clase => {
+              return (
+                <IonRow class='ion-justify-content-center'>
+                  <ButtonPictogram label={clase['_accessible_element']['_text']} pictogram={clase['_accessible_element']['_pictogram']} square={false} href="#" />
+                </IonRow>
+              );
+            })
+          }
           
-          {/* <IonRow class='ion-justify-content-center'>
-            <ButtonPictogram label='Clase B' pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={false} href="#" />
-          </IonRow>
-          <IonRow class='ion-justify-content-center'>
-            <ButtonPictogram label='Clase C' pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={false} href="#" />
-          </IonRow>
-          <IonRow class='ion-justify-content-center'>
-            <ButtonPictogram label='Clase D' pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={false} href="#" />
-          </IonRow> */}
         </IonGrid>
       </IonContent>
 
-      <BottomNav/>
+      <BottomNav prev={handlePrevClick} next={handleNextClick}/>
       
     </IonPage>
   );

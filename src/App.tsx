@@ -1,7 +1,5 @@
 import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
-import Comanda from './pages/Tareas';
 import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -24,6 +22,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Tareas from './pages/Tareas';
 import SelectClass from './pages/SelectClass';
+import { Route } from 'react-router';
 
 setupIonicReact();
 
