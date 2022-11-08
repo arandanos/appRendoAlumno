@@ -23,6 +23,10 @@ ion-text{
     margin: auto;
 }
 
+.card-grid ion-col{
+    margin: auto;
+}
+
 .card-grid{
     width: fit-content;
     margin: 0 auto;
