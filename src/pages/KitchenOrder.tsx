@@ -22,6 +22,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
   const [dishes, setDishes] = useState([]);
   const [name, setName] = useState("");
   const [ isLoading, setIsLoading ] = useState(true)
+  const ITEMS_PER_PAGE = 2;
 
   const sendGetClassRequest = () => {
 
@@ -70,7 +71,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
   array =  dishes.map(element => {
     var hr = <></>
-    if (element != dishes.at(dishes.length - 1)) {
+    if (dishes.indexOf(element) % 2 == 0 && dishes.indexOf(element) != dishes.length - 1) {
       hr = <hr />
     }
     return (
@@ -86,7 +87,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
   return (
 
-    <Pagination items={array} itemsPerPage={2} name={name} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' done_url='/elige_clase' />
+    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={name} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' done_url='/elige_clase' />
 
     // <Pagination itemsPerPage={4} name="La Comanda de la Clase" pictogram="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" url=''/>
   );
