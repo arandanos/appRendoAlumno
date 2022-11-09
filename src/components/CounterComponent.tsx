@@ -1,11 +1,12 @@
 import { IonGrid, IonButton, IonImg, IonText, IonCard, IonCardContent, IonCardTitle, IonCol, IonFabButton, IonIcon, IonItem, IonRow } from '@ionic/react';
 import { removeOutline, addOutline } from 'ionicons/icons';
-import './ButtonPictogram.css';
+import './CounterComponent.css';
 
 import { useState } from 'react';
 import { MAX_STUDENTS } from "../globals";
 
 interface CounterComponentProps { 
+    id: string;
   label: string;
   pictogram: string;
 }
@@ -41,7 +42,7 @@ const CounterComponent: React.FC<CounterComponentProps> = (props: CounterCompone
               </IonCol>
               <IonCol>
                 <IonItem fill='outline' lines="none">
-                  <IonText>{counter}</IonText>
+                  <IonText id={props.id}>{counter}</IonText>
                 </IonItem>
               </IonCol>
               <IonCol>

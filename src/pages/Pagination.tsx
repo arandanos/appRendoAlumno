@@ -22,10 +22,10 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
   const [ itemsPerPage ] = useState(props.itemsPerPage);
   const [ totalPages, setTotalPages ] = useState(0);
 
-  const sendGetRequest = () => {
+  const sendGetRequest = (url : string) => {
 
     return axios({
-      url: API_URL + props.url,
+      url: API_URL + url,
       method: 'get'
     }).then(response => {
   
@@ -35,7 +35,7 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
   };
 
   useEffect(() =>{
-    sendGetRequest().then(data => {
+    sendGetRequest(props.url).then(data => {
       setTotalPages(Math.ceil(data.length / itemsPerPage))
       setItems(data.slice(currentPage*itemsPerPage, currentPage*itemsPerPage + itemsPerPage))
     })
@@ -69,10 +69,16 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
     return items.map(element => {
 
         if (props.url == "dish"){
+          var hr = <></>
+          if (element != items.at(items.length - 1)) {
+            hr = <hr/>
+          }
           return(
             <>
-              <CounterComponent label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
-              <hr />
+              <div>
+                <CounterComponent id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+              </div>
+              {hr}
             </>
           );
         } else {
@@ -86,18 +92,24 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
     })
   }
 
+  const bottomNav = () => {
+    if(props.url == "dish")
+      return <BottomNav prev={handlePrevClick} done="/elige_clase" next={handleNextClick}/>
+    return <BottomNav prev={handlePrevClick} next={handleNextClick}/>
+  }
+
   return (
     <IonPage>
       <Header name={props.name} pictogram={props.pictogram}/>
       <IonContent fullscreen>
         {/* <IonTitle>Elige una clase en la que vas a realizar la comanda realizar la comanda.</IonTitle> */}
-        
         <IonGrid class='button-grid grid-with-bottom-nav'>
-          {renderItems()}
+        {renderItems()}
+          
         </IonGrid>
+        {bottomNav()}
       </IonContent>
-      <BottomNav prev={handlePrevClick} next={handleNextClick}/>
-      
+    
     </IonPage>
       
   );
