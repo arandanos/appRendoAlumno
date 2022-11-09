@@ -28,6 +28,7 @@ import { Route } from 'react-router';
 setupIonicReact();
 
 const App: React.FC = () => {
+
   return (
     <IonApp>
       <IonReactRouter>

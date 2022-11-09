@@ -1,94 +1,83 @@
-import { IonPage, IonContent, IonText, IonImg, IonCard, IonCardTitle, IonCardContent, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonItem } from '@ionic/react';
+import { IonPage, IonContent} from '@ionic/react';
 import Header from '../components/Header';
 import './Page.css';
 import './KitchenOrder.css';
-import Pagination from './Pagination';
-import { addOutline, removeOutline } from 'ionicons/icons';
 import BottomNav from '../components/BottomNav';
-import { useState } from 'react';
-import { MAX_STUDENTS } from "../globals";
+import CounterComponent from '../components/CounterComponent';
+import { RouteComponentProps } from 'react-router';
+import axios from 'axios';
+import { API_URL } from '../globals';
+import { useEffect, useState } from 'react';
 
-const KitchenOrder: React.FC = () => {
+interface KitchenOrderPageProps
+  extends RouteComponentProps<{
+    id_clase: string;
+  }> {}
 
-  const [counter, setCounter] = useState(0);
+const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
-  const handlePlusClick = () => {
-    if(counter < MAX_STUDENTS)
-      setCounter(counter+1);
+  const [classroom, setClassroom] = useState({});
+  const [dishes, setDishes] = useState([]);
+  const [name, setName] = useState("");
+
+  const sendGetClassRequest = () => {
+
+    return axios({
+      url: API_URL + "classroom/" + match.params.id_clase,
+      method: 'get'
+    }).then(response => {
+      console.log(response.data);
+      return response.data;
+    })
   };
-  const handleMinusClick = () => {
-    if(counter > 0){
-      setCounter(counter-1);
-    }
+  
+  const sendGetDishRequest = () => {
+
+    return axios({
+      url: API_URL + "dish",
+      method: 'get'
+    }).then(response => {
+      console.log(response.data);
+      return response.data;
+    })
   };
 
+  
+  useEffect(() => {
+      sendGetClassRequest().then(data => {
+      setClassroom(data);  
+      setName("La Comida " + data['_accessible_element']['_text']) 
+    })
+  }, [])
+
+ 
+ 
   return (
     <IonPage>
-      <Header name="La Comida" pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' />
+      <Header name={name} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' />
       <IonContent fullscreen>
-        <IonCard color="secondary">
-          <IonImg src='https://api.arasaac.org/api/pictograms/6961?resolution=500&download=false' />
-          <IonCardTitle>Carne</IonCardTitle>
-        </IonCard>
-        <IonCardContent>
-          <IonGrid class='card-grid'>
-            <IonRow>
-              <IonCol>
-                <IonFabButton color="danger" onClick={handleMinusClick}>
-                  <IonIcon icon={removeOutline}></IonIcon>
-                </IonFabButton>
-              </IonCol>
-              <IonCol>
-                <IonItem fill='outline' lines="none">
-                  <IonText>{counter}</IonText>
-                </IonItem>
-              </IonCol>
-              <IonCol>
-                <IonFabButton color="success" onClick={handlePlusClick}>
-                  <IonIcon icon={addOutline}></IonIcon>
-                </IonFabButton>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonCardContent>
 
-        <hr />
+        {
+          dishes.map(element => {
+            return(
+              <>
+                <CounterComponent label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                <hr />
+              </>
+            );
+          })
+        }
+        
 
-        <IonCard color="secondary">
-          <IonImg src='https://api.arasaac.org/api/pictograms/6961?resolution=500&download=false' />
-          <IonCardTitle>Carne</IonCardTitle>
-        </IonCard>
-        <IonCardContent>
-          <IonGrid class='card-grid'>
-            <IonRow>
-              <IonCol>
-                <IonFabButton color="danger">
-                  <IonIcon icon={removeOutline}></IonIcon>
-                </IonFabButton>
-              </IonCol>
-              <IonCol>
-                <IonItem fill='outline' lines="none">
-                  <IonText>0</IonText>
-                </IonItem>
-              </IonCol>
-              <IonCol>
-                <IonFabButton color="success">
-                  <IonIcon icon={addOutline}></IonIcon>
-                </IonFabButton>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonCardContent>
-        <hr/>
-
-        <BottomNav/>
+        <BottomNav done="/elige_clase"/>
 
       </IonContent>
-
 
     </IonPage>
     // <Pagination itemsPerPage={4} name="La Comanda de la Clase" pictogram="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" url=''/>
   );
+
+  
 };
 
 export default KitchenOrder;

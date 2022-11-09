@@ -6,6 +6,7 @@ import { IonContent, IonGrid, IonPage, IonRow } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
 import BottomNav from '../components/BottomNav';
 import Header from '../components/Header';
+import CounterComponent from '../components/CounterComponent';
 
 interface PaginationProps {
   itemsPerPage: number;
@@ -63,24 +64,36 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
   if (props.url == "classroom")
     href = "/comanda/"
 
-  
+
+  const renderItems = () => {
+    return items.map(element => {
+
+        if (props.url == "dish"){
+          return(
+            <>
+              <CounterComponent label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+              <hr />
+            </>
+          );
+        } else {
+            return (
+              <IonRow class='ion-justify-content-center'>
+                  <ButtonPictogram id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']} square={false} href={href + element["_id"]}  />
+              </IonRow>
+          );
+        }
+        
+    })
+  }
 
   return (
-    
     <IonPage>
       <Header name={props.name} pictogram={props.pictogram}/>
       <IonContent fullscreen>
         {/* <IonTitle>Elige una clase en la que vas a realizar la comanda realizar la comanda.</IonTitle> */}
         
         <IonGrid class='button-grid grid-with-bottom-nav'>
-          {items.map(element => {
-              return (
-                  <IonRow class='ion-justify-content-center'>
-                      <ButtonPictogram id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']} square={false} href={href + element["_id"]}  />
-                  </IonRow>
-              );
-          })}
-          
+          {renderItems()}
         </IonGrid>
       </IonContent>
       <BottomNav prev={handlePrevClick} next={handleNextClick}/>

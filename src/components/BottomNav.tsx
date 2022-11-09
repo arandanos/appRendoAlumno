@@ -20,7 +20,7 @@ const BottomNav: React.FC<{prev?: any; next?: any ; done?: any }> = (props: {pr
     if(props.done){
         DoneButton = (
             <IonFab vertical="bottom" horizontal='center' slot="fixed">
-                <IonFabButton color="success" href='#'>
+                <IonFabButton color="success" href={props.done}>
                     <IonIcon icon={checkmark}></IonIcon>
                 </IonFabButton>
             </IonFab>
