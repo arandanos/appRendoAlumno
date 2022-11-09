@@ -50,7 +50,10 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
     })
   }, [])
 
- 
+  useEffect(() => {
+      sendGetDishRequest().then(data => setDishes(data))
+  }, [] )
+  
  
   return (
     <IonPage>
@@ -67,7 +70,6 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
             );
           })
         }
-        
 
         <BottomNav done="/elige_clase"/>
 
