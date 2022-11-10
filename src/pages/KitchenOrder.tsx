@@ -19,6 +19,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
   const [classroom, setClassroom] = useState(null);
   const [dishes, setDishes] = useState([]);
+  const [detail, setDetail] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true)
   const ITEMS_PER_PAGE = 2;
 
@@ -44,13 +45,26 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
       return response.data;
     })
   };
+  const sendGetDetailhRequest = () => {
+
+    return axios({
+      url: API_URL + "kitchen_order_detail",
+      method: 'get'
+    }).then(response => {
+      console.log(response.data);
+      return response.data;
+    })
+  };
   
   useEffect(() => {
       sendGetClassRequest().then(data => {
       setClassroom(data);  
       sendGetDishRequest().then(data => {
         setDishes(data)
-        setIsLoading(false)
+        sendGetDetailhRequest().then(data => {
+          setDetail(data)
+          setIsLoading(false)
+        })
       }) 
     })
   }, [])
@@ -66,8 +80,11 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
     );
   }
 
+  detail.map(detail => {
+    sessionStorage.setItem("counter_" + detail["_dish"], detail["_quantity"])
+  })
+
   array =  dishes.map(element => {
-    counters.push(0);
     var hr = <></>
     if (dishes.indexOf(element) % 2 == 0 && dishes.indexOf(element) != dishes.length - 1) {
       hr = <hr />
