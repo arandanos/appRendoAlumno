@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Page.css';
 import Pagination from './PaginationArray';
-import CounterComponent from '../components/CounterComponent';
 
 import { API_URL } from '../globals';
 import axios from 'axios';

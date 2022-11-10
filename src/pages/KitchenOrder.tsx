@@ -18,9 +18,9 @@ interface KitchenOrderPageProps
 
 const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
-  const [classroom, setClassroom] = useState({});
+  const [classroom, setClassroom] = useState(null);
   const [dishes, setDishes] = useState([]);
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [ isLoading, setIsLoading ] = useState(true)
   const ITEMS_PER_PAGE = 2;
 
@@ -50,7 +50,6 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
   useEffect(() => {
       sendGetClassRequest().then(data => {
       setClassroom(data);  
-      setName("La Comida " + data['_accessible_element']['_text']) 
       sendGetDishRequest().then(data => {
         setDishes(data)
         setIsLoading(false)
@@ -60,6 +59,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
   }, [])
 
   var array : Array<JSX.Element> = [];
+  // var counters : Array<number> = [];
   if(isLoading) {
     // * AQUI IRA EL SPLASH DE CARGA
     return(
@@ -70,6 +70,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
   }
 
   array =  dishes.map(element => {
+    // counters.push(0);
     var hr = <></>
     if (dishes.indexOf(element) % 2 == 0 && dishes.indexOf(element) != dishes.length - 1) {
       hr = <hr />
@@ -87,7 +88,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
   return (
 
-    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={name} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' done_url='/elige_clase' />
+    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_accessible_element']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' done_url='/elige_clase' />
 
     // <Pagination itemsPerPage={4} name="La Comanda de la Clase" pictogram="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" url=''/>
   );

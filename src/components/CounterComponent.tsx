@@ -9,12 +9,15 @@ interface CounterComponentProps {
     id: string;
   label: string;
   pictogram: string;
+
 }
 
 const CounterComponent: React.FC<CounterComponentProps> = (props: CounterComponentProps) => {
   // const { name } = useParams<>();
 
   const [counter, setCounter] = useState(0);
+
+  // * const sendPutDetail
 
   const handlePlusClick = () => {
     if(counter < MAX_STUDENTS)
@@ -36,17 +39,17 @@ const CounterComponent: React.FC<CounterComponentProps> = (props: CounterCompone
           <IonGrid class='card-grid'>
             <IonRow>
               <IonCol>
-                <IonFabButton color="danger" onClick={handleMinusClick}>
+                <IonFabButton color="danger" onClick={handleMinusClick} id={"minus_" + props.id}>
                   <IonIcon icon={removeOutline}></IonIcon>
                 </IonFabButton>
               </IonCol>
               <IonCol>
                 <IonItem fill='outline' lines="none">
-                  <IonText id={props.id}>{counter}</IonText>
+                  <IonText id={"counter_" + props.id}>{counter}</IonText>
                 </IonItem>
               </IonCol>
               <IonCol>
-                <IonFabButton color="success" onClick={handlePlusClick}>
+                <IonFabButton color="success" onClick={handlePlusClick} id={"plus_" + props.id}>
                   <IonIcon icon={addOutline}></IonIcon>
                 </IonFabButton>
               </IonCol>

@@ -18,7 +18,7 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
     
-  const [ items, setItems ] = useState<Array<JSX.Element>>([<></>])
+  // const [ items, setItems ] = useState<Array<JSX.Element>>([<></>])
   const [ currentPage, setCurrentPage ] = useState(0);
   const [ itemsPerPage ] = useState(props.itemsPerPage);
   const [ totalPages, setTotalPages ] = useState(0);
@@ -26,7 +26,7 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
 
   useEffect(() =>{
     setTotalPages(Math.ceil(props.items.length / itemsPerPage))
-    setItems(props.items.slice(currentPage*itemsPerPage, currentPage*itemsPerPage + itemsPerPage))
+    // setItems(props.items.slice(currentPage*itemsPerPage, currentPage*itemsPerPage + itemsPerPage))
   }, [currentPage])
 
   const handleNextClick = () => {
@@ -52,13 +52,24 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
     return <BottomNav prev={handlePrevClick} next={handleNextClick}/>
   }
 
+  var items = () => {
+    for (let i = currentPage * itemsPerPage; i < currentPage*itemsPerPage + itemsPerPage; i++) {
+      
+      
+    }
+  }
+
   return (
     <IonPage>
       <Header name={props.name} pictogram={props.pictogram}/>
       <IonContent fullscreen>
         {/* <IonTitle>Elige una clase en la que vas a realizar la comanda realizar la comanda.</IonTitle> */}
         <IonGrid class='button-grid grid-with-bottom-nav'>
-            {items}  
+            {props.items.map( item => {
+              if ((props.items.indexOf(item) >= currentPage * itemsPerPage) && props.items.indexOf(item) < currentPage * itemsPerPage + itemsPerPage) {
+                return (item)
+              }
+            })}  
         </IonGrid>
         {bottomNav()}
       </IonContent>

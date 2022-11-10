@@ -18,7 +18,7 @@ const ButtonPictogram: React.FC<ButtonProps> = (props: ButtonProps) => {
     return (
       <>
         <IonImg class="pictogram-on-button" src={props.pictogram} />
-        <IonText class='large-text'>{props.label}</IonText>
+        <IonText class='large-text ion-text-wrap'>{props.label}</IonText>
       </>
     );
   }

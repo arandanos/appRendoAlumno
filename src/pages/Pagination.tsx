@@ -6,7 +6,6 @@ import { IonContent, IonGrid, IonPage, IonRow } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
 import BottomNav from '../components/BottomNav';
 import Header from '../components/Header';
-import CounterComponent from '../components/CounterComponent';
 
 interface PaginationProps {
   itemsPerPage: number;
@@ -28,7 +27,6 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
       url: API_URL + url,
       method: 'get'
     }).then(response => {
-  
       console.log(response.data);
       return response.data;
     })
@@ -76,7 +74,7 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
           return(
             <>
               <div>
-                <CounterComponent id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/>
+                {/* <CounterComponent id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']}/> */}
               </div>
               {hr}
             </>

@@ -15,10 +15,9 @@
 }
 
 .pictogram-on-button{
+    min-width: var(--pictogram-large-width);
     max-width: var(--pictogram-large-width);
-    margin: auto;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin: 5px auto;
 }
 
 .button-pictogram .pictogram-on-button{
