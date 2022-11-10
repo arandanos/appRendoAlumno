@@ -10,7 +10,6 @@ import { API_URL } from '../globals';
 import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
 import ButtonPictogram from '../components/ButtonPictogram';
-
 interface KitchenOrderPageProps
   extends RouteComponentProps<{
     id_clase: string;
@@ -20,9 +19,9 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
   const [classroom, setClassroom] = useState(null);
   const [dishes, setDishes] = useState([]);
-  // const [name, setName] = useState("");
   const [ isLoading, setIsLoading ] = useState(true)
   const ITEMS_PER_PAGE = 2;
+
 
   const sendGetClassRequest = () => {
 
@@ -45,7 +44,6 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
       return response.data;
     })
   };
-
   
   useEffect(() => {
       sendGetClassRequest().then(data => {
@@ -53,13 +51,12 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
       sendGetDishRequest().then(data => {
         setDishes(data)
         setIsLoading(false)
-      })
-      
+      }) 
     })
   }, [])
 
   var array : Array<JSX.Element> = [];
-  // var counters : Array<number> = [];
+  var counters : Array<number> = [];
   if(isLoading) {
     // * AQUI IRA EL SPLASH DE CARGA
     return(
@@ -70,7 +67,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
   }
 
   array =  dishes.map(element => {
-    // counters.push(0);
+    counters.push(0);
     var hr = <></>
     if (dishes.indexOf(element) % 2 == 0 && dishes.indexOf(element) != dishes.length - 1) {
       hr = <hr />
@@ -85,12 +82,32 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
     );
   })
 
+    // ***** SESSION
+
+    const sendPutDish = (id : string, data : {}) => {
+      return axios({
+        url: API_URL + "kitchen_order_detail/" + id,
+        method: 'put',
+        data: data
+      }).then(response => {
+        console.log(response.data);
+        return response.data;
+      })
+    }
+
+    const doneAction = () => {
+      dishes.map(dish => {
+        var data = {
+          "_quantity": sessionStorage.getItem("counter_" + dish["_id"])
+        }
+        sendPutDish(dish["_id"], data )
+      })
+    }
+ 
+    // *****
 
   return (
-
-    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_accessible_element']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' done_url='/elige_clase' />
-
-    // <Pagination itemsPerPage={4} name="La Comanda de la Clase" pictogram="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" url=''/>
+    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_accessible_element']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl='/elige_clase' doneAction={doneAction} />
   );
 
   

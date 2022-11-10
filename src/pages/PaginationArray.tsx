@@ -12,7 +12,8 @@ interface PaginationProps {
   itemsPerPage: number;
   name: string;
   pictogram: string;
-  done_url?: string;
+  doneUrl?: string;
+  doneAction?: any;
   items: Array<JSX.Element>
 }
 
@@ -47,23 +48,15 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
   };
 
   const bottomNav = () => {
-    if(props.done_url)
-      return <BottomNav prev={handlePrevClick} done={props.done_url} next={handleNextClick}/>
+    if(props.doneUrl)
+      return <BottomNav prev={handlePrevClick} done={props.doneUrl} doneAction={props.doneAction} next={handleNextClick}/>
     return <BottomNav prev={handlePrevClick} next={handleNextClick}/>
-  }
-
-  var items = () => {
-    for (let i = currentPage * itemsPerPage; i < currentPage*itemsPerPage + itemsPerPage; i++) {
-      
-      
-    }
   }
 
   return (
     <IonPage>
       <Header name={props.name} pictogram={props.pictogram}/>
       <IonContent fullscreen>
-        {/* <IonTitle>Elige una clase en la que vas a realizar la comanda realizar la comanda.</IonTitle> */}
         <IonGrid class='button-grid grid-with-bottom-nav'>
             {props.items.map( item => {
               if ((props.items.indexOf(item) >= currentPage * itemsPerPage) && props.items.indexOf(item) < currentPage * itemsPerPage + itemsPerPage) {

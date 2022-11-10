@@ -2,30 +2,35 @@ import { IonGrid, IonButton, IonImg, IonText, IonCard, IonCardContent, IonCardTi
 import { removeOutline, addOutline } from 'ionicons/icons';
 import './CounterComponent.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MAX_STUDENTS } from "../globals";
 
 interface CounterComponentProps { 
-    id: string;
+  id: string;
   label: string;
   pictogram: string;
-
 }
 
 const CounterComponent: React.FC<CounterComponentProps> = (props: CounterComponentProps) => {
   // const { name } = useParams<>();
 
-  const [counter, setCounter] = useState(0);
+  var counterSession = sessionStorage.getItem("counter_" + props.id);
+  var initCounter = 0;
+  if(counterSession != null)
+    initCounter = Number(counterSession)
 
-  // * const sendPutDetail
+  const [counter, setCounter] = useState(initCounter);
 
   const handlePlusClick = () => {
-    if(counter < MAX_STUDENTS)
+    if(counter < MAX_STUDENTS){
       setCounter(counter+1);
+      sessionStorage.setItem("counter_" + props.id, JSON.stringify(counter+1))
+    }
   };
   const handleMinusClick = () => {
     if(counter > 0){
       setCounter(counter-1);
+      sessionStorage.setItem("counter_" + props.id, JSON.stringify(counter-1))
     }
   };
 

@@ -86,9 +86,9 @@ http://ionicframework.com/docs/theming/ */
 }
 
 
-@media only screen and (max-width: 266px){
+@media only screen and (max-width: 300px){
   :root{
-    --large-square-button-width: 100px;
+    --large-square-button-width: 110px;
   }
 }
 /* @media (max-width: 266px){
