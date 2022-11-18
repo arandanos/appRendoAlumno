@@ -28,7 +28,7 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
   useEffect(() =>{
     setTotalPages(Math.ceil(props.items.length / itemsPerPage))
     // setItems(props.items.slice(currentPage*itemsPerPage, currentPage*itemsPerPage + itemsPerPage))
-  }, [currentPage])
+  }, [])
 
   const handleNextClick = () => {
     if((currentPage+1) > totalPages-1){
@@ -38,13 +38,13 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
     }
 
   };
+  
   const handlePrevClick = () => {
     if((currentPage-1) < 0){
       setCurrentPage(totalPages-1);
     } else {
       setCurrentPage(currentPage-1);
     }
-
   };
 
   const bottomNav = () => {

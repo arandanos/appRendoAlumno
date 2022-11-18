@@ -19,7 +19,6 @@ const Tareas: React.FC = () => {
       url: API_URL + url,
       method: 'get'
     }).then(response => {
-  
       console.log(response.data);
       return response.data;
     })
@@ -42,10 +41,10 @@ const Tareas: React.FC = () => {
     );
   }
 
-  var array : Array<JSX.Element> = items.map(element => {
+  var array : Array<JSX.Element> = items.map(task => {
     return(
       <IonRow class='ion-justify-content-center'>
-        <ButtonPictogram id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']} square={false} href={"#"} />
+        <ButtonPictogram id={task['_id']} label={task['_accessible_element']['_text']} pictogram={task['_accessible_element']['_pictogram']} square={false} href={"#"} />
       </IonRow>
     )
   })

@@ -75,11 +75,15 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
+  /** Variable para salvar notch y barra notificaciones **/
+  --ion-safe-area-top: 22px;
+
   /** Variables propias **/
   --pictogram-medium-width: 60px;
   --pictogram-large-width: 74px;
-  --ion-safe-area-top: 22px;
-  --large-square-button-width: 120px;
+
+  --large-square-button-width: 40vw;
+  /* --large-square-button-width: 120px; */
   --large-button-width: 200px;
   --large-button-height: 120px;
   --bottom-nav-height: 60px;
