@@ -1,14 +1,24 @@
 import { IonGrid, IonButton, IonImg, IonText } from '@ionic/react';
 import './ButtonPictogram.css';
 
-const ButtonPictogram: React.FC<{ label: string; pictogram: string, square: boolean, href: string }> = (props: { label: string, pictogram: string, square: boolean, href: string }) => {
+interface ButtonProps { 
+  label: string;
+  pictogram: string;
+  square: boolean;
+  href: string;
+  id?: string;
+  task_type?:string;
+
+}
+
+const ButtonPictogram: React.FC<ButtonProps> = (props: ButtonProps) => {
   // const { name } = useParams<>();
 
   var ButtonElements = () => {
     return (
       <>
         <IonImg class="pictogram-on-button" src={props.pictogram} />
-        <IonText class='large-text'>{props.label}</IonText>
+        <IonText class='large-text ion-text-wrap'>{props.label}</IonText>
       </>
     );
   }
@@ -30,7 +40,7 @@ const ButtonPictogram: React.FC<{ label: string; pictogram: string, square: bool
 
 
   return (
-    <IonButton color="secondary" class={props.square ? "button-pictogram-square" : "button-pictogram"} href={props.href}>
+    <IonButton color="secondary" class={props.square ? "button-pictogram-square" : "button-pictogram"} href={props.href} id={props.id}>
       <ButtonContent/>
     </IonButton>
   );

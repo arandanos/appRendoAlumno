@@ -1,8 +1,13 @@
   import { IonButtons, IonHeader, IonTitle, IonToolbar, IonIcon, IonImg, IonRow, IonFabButton } from '@ionic/react';
   import { homeOutline } from 'ionicons/icons';
   import './Header.css';
+
+  interface HeaderProps {
+    name: string; 
+    pictogram: string
+  }
   
-const Header: React.FC<{ name: string; pictogram: string }> = ( args: {name: string, pictogram: string} ) => {
+const Header: React.FC<HeaderProps> = ( args: HeaderProps ) => {
 
     return (
         <IonHeader>

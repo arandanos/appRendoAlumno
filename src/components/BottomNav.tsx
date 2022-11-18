@@ -2,7 +2,7 @@ import { IonFabButton, IonFab, IonIcon } from '@ionic/react';
 import { checkmark, arrowBackOutline, arrowForwardOutline } from 'ionicons/icons';
 import './BottomNav.css'
 
-const BottomNav: React.FC<{prev?: any; next?: any ; done?: any }> = (props: {prev?: any, next?: any, done?: any } ) => {
+const BottomNav: React.FC<{prev?: any; next?: any ; done?: any ; doneAction?: any }> = (props: {prev?: any, next?: any, done?: any, doneAction?: any } ) => {
     var PrevButton;
     if(props.prev){
         PrevButton = (
@@ -20,7 +20,7 @@ const BottomNav: React.FC<{prev?: any; next?: any ; done?: any }> = (props: {pr
     if(props.done){
         DoneButton = (
             <IonFab vertical="bottom" horizontal='center' slot="fixed">
-                <IonFabButton color="success" href='#'>
+                <IonFabButton color="success" href={props.done} onClick={props.doneAction}>
                     <IonIcon icon={checkmark}></IonIcon>
                 </IonFabButton>
             </IonFab>

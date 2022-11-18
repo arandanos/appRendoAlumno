@@ -1,23 +1,56 @@
-import {  IonContent, IonPage } from '@ionic/react';
+import React, { useEffect, useState } from 'react';
 import './Page.css';
-import Header from '../components/Header';
-import BottomNav from '../components/BottomNav';
-      
+import Pagination from './PaginationArray';
+
+import { API_URL } from '../globals';
+import axios from 'axios';
+import { IonRow } from '@ionic/react';
+import ButtonPictogram from '../components/ButtonPictogram';
+
 const Tareas: React.FC = () => {
 
-  // const [ clase, setClase ] = useState(null)
-  return (
-    <IonPage>
-      <Header name="Tareas" pictogram='https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false'/>
-      <IonContent fullscreen>
-      
-        {/*  NO IMPLEMENTAR AUN - CREAR NUEVA PAGINA PARA COMANDA DE COCINA */}
-        {/* <ButtonPictogram label='Comanda' pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={false} href="#"/> */}
-      </IonContent>
+  const [ items, setItems ] = useState([])
+  const [ isLoading, setIsLoading ] = useState(true)
+  
 
-      <BottomNav/>
-      
-    </IonPage>
+  const sendGetRequest = (url : string) => {
+
+    return axios({
+      url: API_URL + url,
+      method: 'get'
+    }).then(response => {
+      console.log(response.data);
+      return response.data;
+    })
+  };
+
+  useEffect(() => {
+    sendGetRequest("task").then(data => {
+      setItems(data)
+      setIsLoading(false)
+    })
+  }, [])
+
+  var array : Array<JSX.Element> = [];
+  if(isLoading) {
+    // * AQUI IRA EL SPLASH DE CARGA
+    return(
+      <div className="App">
+        <h1>Cargando...</h1>
+      </div>
+    );
+  }
+
+  var array : Array<JSX.Element> = items.map(task => {
+    return(
+      <IonRow class='ion-justify-content-center'>
+        <ButtonPictogram id={task['_id']} label={task['_accessible_element']['_text']} pictogram={task['_accessible_element']['_pictogram']} square={false} href={"#"} />
+      </IonRow>
+    )
+  })
+
+  return (
+    <Pagination items={array} itemsPerPage={4} name="Mis Tareas" pictogram='https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false' />
   );
 };
 

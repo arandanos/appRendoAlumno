@@ -1,23 +1,20 @@
+import React, { useEffect, useState } from 'react';
 import './Page.css';
-import Header from '../components/Header';
-import ButtonPictogram from '../components/ButtonPictogram';
-import BottomNav from '../components/BottomNav';
-import { API_URL } from '../variables';
-import { useEffect, useState } from 'react';
+import Pagination from './PaginationArray';
+
+import { API_URL } from '../globals';
 import axios from 'axios';
-import { IonPage, IonContent, IonGrid, IonRow } from '@ionic/react';
+import { IonRow } from '@ionic/react';
+import ButtonPictogram from '../components/ButtonPictogram';
 
 const SelectClass: React.FC = () => {
+  const [ items, setItems ] = useState([])
+  const [ isLoading, setIsLoading ] = useState(true)
 
-  const [ clases, setClases ] = useState([])
-  const [ currentPage, setCurrentPage ] = useState(0);
-  const [itemsPerPage] = useState(4);
-  const [totalPages, setTotalPages] = useState(0);
-
-  const sendGetRequest = () => {
+  const sendGetRequest = (url : string) => {
 
     return axios({
-      url: API_URL + "classroom",
+      url: API_URL + url,
       method: 'get'
     }).then(response => {
   
@@ -26,54 +23,34 @@ const SelectClass: React.FC = () => {
     })
   };
 
-  useEffect(() =>{
-    sendGetRequest().then(data => {
-      setTotalPages(Math.ceil(data.length / itemsPerPage))
-      setClases(data.slice(currentPage*itemsPerPage, currentPage*itemsPerPage + itemsPerPage))
+  var array : Array<JSX.Element> = [];
+
+  useEffect(() => {
+    sendGetRequest("classroom").then(data => {
+      setItems(data);
+      setIsLoading(false);
     })
-    
-  }, [currentPage])
+  }, [])
 
-  const handleNextClick = () => {
-    if((currentPage+1) > totalPages-1){
-      setCurrentPage(0);
-    } else {
-      setCurrentPage(currentPage+1);
-    }
-
-  };
-  const handlePrevClick = () => {
-    if((currentPage-1) < 0){
-      setCurrentPage(totalPages-1);
-    } else {
-      setCurrentPage(currentPage-1);
-    }
-
-  };
+  if(isLoading) {
+    // * AQUI IRA EL SPLASH DE CARGA
+    return(
+      <div className="App">
+        <h1>Cargando...</h1>
+      </div>
+    );
+  }
+ 
+  array = items.map(element => {
+    return(
+      <IonRow class='ion-justify-content-center'>
+        <ButtonPictogram id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']} square={false} href={"/comanda/" + element['_id']} />
+      </IonRow>
+    )
+  })
 
   return (
-    <IonPage>
-      <Header name="Elige Clase" pictogram='https://api.arasaac.org/api/pictograms/9815?resolution=500&download=false'/>
-      <IonContent fullscreen>
-        {/* <IonTitle>Elige una clase en la que vas a realizar la comanda realizar la comanda.</IonTitle> */}
-        
-        <IonGrid class='button-grid grid-with-bottom-nav'>
-          {
-            clases.map(clase => {
-              return (
-                <IonRow class='ion-justify-content-center'>
-                  <ButtonPictogram label={clase['_accessible_element']['_text']} pictogram={clase['_accessible_element']['_pictogram']} square={false} href="#" />
-                </IonRow>
-              );
-            })
-          }
-          
-        </IonGrid>
-      </IonContent>
-
-      <BottomNav prev={handlePrevClick} next={handleNextClick}/>
-      
-    </IonPage>
+    <Pagination items={array} itemsPerPage={4} name="Elige Clase" pictogram='https://api.arasaac.org/api/pictograms/9815?resolution=500&download=false'/>
   );
 };
 

@@ -1,5 +1,5 @@
 .button-pictogram-square {
-    width: var(--large-square-button-width);
+    min-width: var(--large-square-button-width);
     max-width: var(--large-square-button-width);
     height: var(--large-button-height);
     max-height: var(--large-button-height);
@@ -10,19 +10,15 @@
 
 .button-pictogram {
     height: fit-content;
-    width: var(--large-button-width);
+    min-width: var(--large-button-width);
+    max-width: var(--large-button-width);
     text-transform: capitalize;
 }
 
 .pictogram-on-button{
+    min-width: var(--pictogram-large-width);
     max-width: var(--pictogram-large-width);
-    margin: auto;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
-.button-pictogram .pictogram-on-button{
-    margin: 0 auto;
+    margin: 5px auto;
 }
 
 .button-pictogram .large-text{
