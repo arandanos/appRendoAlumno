@@ -6,7 +6,7 @@ import BottomNav from '../components/BottomNav';
 import CounterComponent from '../components/CounterComponent';
 import { RouteComponentProps } from 'react-router';
 import axios from 'axios';
-import { API_URL } from '../globals';
+import { sendGetAllRequest, sendGetByIDRequest, sendPutRequest } from '../ApiMethods';
 import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
 import ButtonPictogram from '../components/ButtonPictogram';
@@ -22,46 +22,13 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
   const [detail, setDetail] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true)
   const ITEMS_PER_PAGE = 2;
-
-
-  const sendGetClassRequest = () => {
-
-    return axios({
-      url: API_URL + "classroom/" + match.params.id_clase,
-      method: 'get'
-    }).then(response => {
-      console.log(response.data);
-      return response.data;
-    })
-  };
-  
-  const sendGetDishRequest = () => {
-
-    return axios({
-      url: API_URL + "dish",
-      method: 'get'
-    }).then(response => {
-      console.log(response.data);
-      return response.data;
-    })
-  };
-  const sendGetDetailRequest = () => {
-
-    return axios({
-      url: API_URL + "kitchen_order_detail",
-      method: 'get'
-    }).then(response => {
-      console.log(response.data);
-      return response.data;
-    })
-  };
   
   useEffect(() => {
-      sendGetClassRequest().then(data => {
+      sendGetByIDRequest("classroom", match.params.id_clase).then(data => {
       setClassroom(data);  
-      sendGetDishRequest().then(data => {
+      sendGetAllRequest("dish").then(data => {
         setDishes(data)
-        sendGetDetailRequest().then(data => {
+        sendGetAllRequest("kitchen_order_detail").then(data => {
           setDetail(data)
           setIsLoading(false)
         })
@@ -101,23 +68,12 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
     // ***** SESSION
 
-    const sendPutDish = (id : string, data : {}) => {
-      return axios({
-        url: API_URL + "kitchen_order_detail/" + id,
-        method: 'put',
-        data: data
-      }).then(response => {
-        console.log(response.data);
-        return response.data;
-      })
-    }
-
     const doneAction = () => {
       dishes.map(dish => {
         var data = {
           "_quantity": sessionStorage.getItem("counter_" + dish["_id"])
         }
-        sendPutDish(dish["_id"], data )
+        sendPutRequest("kitchen_order_detail", dish["_id"], data )
       })
     }
  

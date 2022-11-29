@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Page.css';
 import Pagination from './PaginationArray';
 
-import { API_URL } from '../globals';
-import axios from 'axios';
+import { sendGetAllRequest } from '../ApiMethods';
 import { IonRow } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
 
@@ -11,22 +10,10 @@ const SelectClass: React.FC = () => {
   const [ items, setItems ] = useState([])
   const [ isLoading, setIsLoading ] = useState(true)
 
-  const sendGetRequest = (url : string) => {
-
-    return axios({
-      url: API_URL + url,
-      method: 'get'
-    }).then(response => {
-  
-      console.log(response.data);
-      return response.data;
-    })
-  };
-
   var array : Array<JSX.Element> = [];
 
   useEffect(() => {
-    sendGetRequest("classroom").then(data => {
+    sendGetAllRequest("classroom").then(data => {
       setItems(data);
       setIsLoading(false);
     })
