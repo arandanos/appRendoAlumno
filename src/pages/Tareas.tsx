@@ -44,7 +44,7 @@ const Tareas: React.FC = () => {
   var array : Array<JSX.Element> = items.map(task => {
     return(
       <IonRow class='ion-justify-content-center'>
-        <ButtonPictogram id={task['_id']} label={task['_accessible_element']['_text']} pictogram={task['_accessible_element']['_pictogram']} square={false} href={"#"} />
+        <ButtonPictogram id={task['_id']} label={task['_name']['_text']} pictogram={task['_name']['_pictogram']} square={false} href={"#"} />
       </IonRow>
     )
   })

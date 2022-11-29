@@ -45,7 +45,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
       return response.data;
     })
   };
-  const sendGetDetailhRequest = () => {
+  const sendGetDetailRequest = () => {
 
     return axios({
       url: API_URL + "kitchen_order_detail",
@@ -61,7 +61,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
       setClassroom(data);  
       sendGetDishRequest().then(data => {
         setDishes(data)
-        sendGetDetailhRequest().then(data => {
+        sendGetDetailRequest().then(data => {
           setDetail(data)
           setIsLoading(false)
         })
@@ -84,15 +84,15 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
     sessionStorage.setItem("counter_" + detail["_dish"], detail["_quantity"])
   })
 
-  array =  dishes.map(element => {
+  array =  dishes.map(dish => {
     var hr = <></>
-    if (dishes.indexOf(element) % 2 == 0 && dishes.indexOf(element) != dishes.length - 1) {
+    if (dishes.indexOf(dish) % 2 == 0 && dishes.indexOf(dish) != dishes.length - 1) {
       hr = <hr />
     }
     return (
       <>
         <div>
-          <CounterComponent id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']} />
+          <CounterComponent id={dish['_id']} label={dish['_name']['_text']} pictogram={dish['_name']['_pictogram']} />
         </div>
         {hr}
       </>
@@ -124,7 +124,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
     // *****
 
   return (
-    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_accessible_element']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl='/elige_clase' doneAction={doneAction} />
+    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_name']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl='/elige_clase' doneAction={doneAction} />
   );
 
   

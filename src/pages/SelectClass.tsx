@@ -44,7 +44,7 @@ const SelectClass: React.FC = () => {
   array = items.map(element => {
     return(
       <IonRow class='ion-justify-content-center'>
-        <ButtonPictogram id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']} square={false} href={"/comanda/" + element['_id']} />
+        <ButtonPictogram id={element['_id']} label={element['_name']['_text']} pictogram={element['_name']['_pictogram']} square={false} href={"/comanda/" + element['_id']} />
       </IonRow>
     )
   })

@@ -82,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
         } else {
             return (
               <IonRow class='ion-justify-content-center'>
-                  <ButtonPictogram id={element['_id']} label={element['_accessible_element']['_text']} pictogram={element['_accessible_element']['_pictogram']} square={false} href={href + element["_id"]}  />
+                  <ButtonPictogram id={element['_id']} label={element['_name']['_text']} pictogram={element['_name']['_pictogram']} square={false} href={href + element["_id"]}  />
               </IonRow>
           );
         }
