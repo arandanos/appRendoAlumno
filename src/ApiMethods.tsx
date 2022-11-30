@@ -35,7 +35,7 @@ export const sendPostRequest = ( url : string, data : any) => {
 
 export const sendPutRequest = (url : string, id : string, data : {}) => {
     return axios({
-      url: API_URL + url + id,
+      url: API_URL + url + "/" + id,
       method: 'put',
       data: data
     }).then(response => {

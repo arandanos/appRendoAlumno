@@ -6,7 +6,7 @@ import { sendGetAllRequest } from '../ApiMethods';
 import { IonRow } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
 
-const Tareas: React.FC = () => {
+const Tasks: React.FC = () => {
 
   const [ items, setItems ] = useState([])
   const [ isLoading, setIsLoading ] = useState(true)
@@ -28,10 +28,20 @@ const Tareas: React.FC = () => {
     );
   }
 
+  var generateHref = (task : any) => {
+    let href= "#"
+
+    if(task["_type"] == "COMANDA"){
+      href = "/elige_clase/" + task["_id"]
+    }
+
+    return href
+  }
+
   var array : Array<JSX.Element> = items.map(task => {
     return(
       <IonRow class='ion-justify-content-center'>
-        <ButtonPictogram id={task['_id']} label={task['_name']['_text']} pictogram={task['_name']['_pictogram']} square={false} href={"#"} />
+        <ButtonPictogram id={task['_id']} label={task['_name']['_text']} pictogram={task['_name']['_pictogram']} square={false} href={generateHref(task)} />
       </IonRow>
     )
   })
@@ -41,4 +51,4 @@ const Tareas: React.FC = () => {
   );
 };
 
-export default Tareas;
+export default Tasks;

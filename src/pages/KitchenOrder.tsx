@@ -1,43 +1,52 @@
-import { IonPage, IonContent, IonRow} from '@ionic/react';
-import Header from '../components/Header';
 import './Page.css';
-import './KitchenOrder.css';
-import BottomNav from '../components/BottomNav';
 import CounterComponent from '../components/CounterComponent';
-import { RouteComponentProps } from 'react-router';
-import axios from 'axios';
+import { Redirect, RouteComponentProps } from 'react-router';
 import { sendGetAllRequest, sendGetByIDRequest, sendPutRequest } from '../ApiMethods';
 import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
-import ButtonPictogram from '../components/ButtonPictogram';
+import { useHistory } from "react-router-dom";
+
 interface KitchenOrderPageProps
   extends RouteComponentProps<{
-    id_clase: string;
+    id_task: string;
+    id_class: string;
   }> {}
 
 const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
 
+  const [kitchenOrder, setkitchenOrder] = useState(null);
   const [classroom, setClassroom] = useState(null);
-  const [dishes, setDishes] = useState([]);
-  const [detail, setDetail] = useState([]);
+  const [details, setDetail] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true)
   const ITEMS_PER_PAGE = 2;
+  const history = useHistory();
   
   useEffect(() => {
-      sendGetByIDRequest("classroom", match.params.id_clase).then(data => {
-      setClassroom(data);  
-      sendGetAllRequest("dish").then(data => {
-        setDishes(data)
-        sendGetAllRequest("kitchen_order_detail").then(data => {
-          setDetail(data)
-          setIsLoading(false)
+      // * Obtengo la comanda correspondiente
+    sendGetByIDRequest("kitchen_order/task", match.params.id_task).then(order => {
+      setkitchenOrder(order);
+
+      // * Obtengo la clase correspondiente
+      sendGetByIDRequest("classroom", match.params.id_class).then(classroom => {
+        setClassroom(classroom);  
+
+        // * A partir de la Clase y la Comanda, obtengo sus details 
+        // * (llevan los platos concatenados por lo que no hace falta hacer gets de los platos)
+        let urlGetKitchenOrderDetail = "kitchen_order_detail/" + match.params.id_class + "/" + order['_id'];
+        sendGetAllRequest(urlGetKitchenOrderDetail).then( detail => {
+          setDetail(detail);
+          setIsLoading(false);
         })
-      }) 
+
+      })
+
     })
+
   }, [])
 
+ 
+
   var array : Array<JSX.Element> = [];
-  var counters : Array<number> = [];
   if(isLoading) {
     // * AQUI IRA EL SPLASH DE CARGA
     return(
@@ -47,40 +56,43 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
     );
   }
 
-  detail.map(detail => {
-    sessionStorage.setItem("counter_" + detail["_dish"], detail["_quantity"])
-  })
-
-  array =  dishes.map(dish => {
+  array = details.map((detail) => {
+    sessionStorage.setItem("counter_" + detail['_id'], detail["_quantity"])
     var hr = <></>
-    if (dishes.indexOf(dish) % 2 == 0 && dishes.indexOf(dish) != dishes.length - 1) {
+    if (details.indexOf(detail) % 2 == 0 && details.indexOf(detail) != details.length - 1) {
       hr = <hr />
     }
     return (
       <>
         <div>
-          <CounterComponent id={dish['_id']} label={dish['_name']['_text']} pictogram={dish['_name']['_pictogram']} />
+          <CounterComponent id={detail['_id']} label={detail['_dish']['_name']['_text']} pictogram={detail['_dish']['_name']['_pictogram']} />
         </div>
         {hr}
       </>
     );
   })
 
+
     // ***** SESSION
 
     const doneAction = () => {
-      dishes.map(dish => {
+      details.map((detail : any) => {
         var data = {
-          "_quantity": sessionStorage.getItem("counter_" + dish["_id"])
+          "_quantity": sessionStorage.getItem("counter_" + detail['_id'])
         }
-        sendPutRequest("kitchen_order_detail", dish["_id"], data )
+      
+        sendPutRequest("kitchen_order_detail", detail['_id'], data ).then(() => {
+          // * Resetear las sessiones de los contadores
+          sessionStorage.removeItem("counter_" + detail['_id'])
+        })
+        
       })
     }
  
     // *****
 
   return (
-    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_name']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl='/elige_clase' doneAction={doneAction} />
+    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_name']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl={'/elige_clase/' + match.params.id_task} doneAction={doneAction} />
   );
 
   

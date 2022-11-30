@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
-
-import './Page.css';
-
-import { IonContent, IonGrid, IonPage, IonRow } from '@ionic/react';
-import ButtonPictogram from '../components/ButtonPictogram';
+import { IonContent, IonGrid, IonPage } from '@ionic/react';
 import BottomNav from '../components/BottomNav';
 import Header from '../components/Header';
-import CounterComponent from '../components/CounterComponent';
+import './Page.css';
 
 interface PaginationProps {
   itemsPerPage: number;

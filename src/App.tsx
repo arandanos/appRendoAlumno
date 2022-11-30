@@ -20,7 +20,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Tareas from './pages/Tareas';
+import Tasks from './pages/Tasks';
 import SelectClass from './pages/SelectClass';
 import KitchenOrder from './pages/KitchenOrder';
 import { Route } from 'react-router';
@@ -35,9 +35,9 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main"> 
           <IonRouterOutlet id="main">
             <Route exact path="/" component={Home}></Route>
-            <Route exact path="/tareas" component={Tareas}></Route>
-            <Route exact path="/elige_clase" component={SelectClass}></Route>
-            <Route exact path="/comanda/:id_clase" component={KitchenOrder}></Route>
+            <Route exact path="/tareas" component={Tasks}></Route>
+            <Route exact path="/elige_clase/:id_task" component={SelectClass}></Route>
+            <Route exact path="/comanda/:id_task/:id_class" component={KitchenOrder}></Route>
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
