@@ -1,6 +1,6 @@
 import './Page.css';
 import CounterComponent from '../components/CounterComponent';
-import { Redirect, RouteComponentProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { sendGetAllRequest, sendGetByIDRequest, sendPutRequest } from '../ApiMethods';
 import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
