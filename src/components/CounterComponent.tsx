@@ -37,8 +37,8 @@ const CounterComponent: React.FC<CounterComponentProps> = (props: CounterCompone
   return (
     <>
       <IonCard color="secondary">
-            <IonImg src={props.pictogram} />
-            <IonCardTitle>{props.label}</IonCardTitle>
+          <IonImg src={props.pictogram} />
+          <IonCardTitle>{props.label}</IonCardTitle>
       </IonCard>
       <IonCardContent>
         <IonGrid class='card-grid'>

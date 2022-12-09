@@ -14,16 +14,13 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
-    
-  // const [ items, setItems ] = useState<Array<JSX.Element>>([<></>])
+  
   const [ currentPage, setCurrentPage ] = useState(0);
   const [ itemsPerPage ] = useState(props.itemsPerPage);
   const [ totalPages, setTotalPages ] = useState(0);
-  
 
-  useEffect(() =>{
+  useEffect(() => {
     setTotalPages(Math.ceil(props.items.length / itemsPerPage))
-    // setItems(props.items.slice(currentPage*itemsPerPage, currentPage*itemsPerPage + itemsPerPage))
   }, [])
 
   const handleNextClick = () => {

@@ -7,8 +7,6 @@ interface ButtonProps {
   square: boolean;
   href: string;
   id?: string;
-  task_type?:string;
-
 }
 
 const ButtonPictogram: React.FC<ButtonProps> = (props: ButtonProps) => {

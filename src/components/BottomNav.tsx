@@ -2,7 +2,14 @@ import { IonFabButton, IonFab, IonIcon } from '@ionic/react';
 import { checkmark, arrowBackOutline, arrowForwardOutline } from 'ionicons/icons';
 import './BottomNav.css'
 
-const BottomNav: React.FC<{prev?: any; next?: any ; done?: any ; doneAction?: any }> = (props: {prev?: any, next?: any, done?: any, doneAction?: any } ) => {
+interface BottomNavProps {
+    prev?: any; 
+    next?: any; 
+    done?: any; 
+    doneAction?: any;
+}
+
+const BottomNav: React.FC<BottomNavProps> = (props: BottomNavProps ) => {
     var PrevButton;
     if(props.prev){
         PrevButton = (
