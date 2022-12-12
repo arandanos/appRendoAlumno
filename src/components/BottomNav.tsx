@@ -1,6 +1,5 @@
 import { IonFabButton, IonFab, IonIcon } from '@ionic/react';
 import { checkmark, arrowBackOutline, arrowForwardOutline } from 'ionicons/icons';
-import './BottomNav.css'
 
 interface BottomNavProps {
     prev?: any; 

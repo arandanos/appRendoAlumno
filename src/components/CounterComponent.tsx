@@ -1,18 +1,19 @@
-import { IonGrid, IonButton, IonImg, IonText, IonCard, IonCardContent, IonCardTitle, IonCol, IonFabButton, IonIcon, IonItem, IonRow } from '@ionic/react';
-import { removeOutline, addOutline } from 'ionicons/icons';
+import { IonGrid, IonButton, IonImg, IonText, IonCard, IonCardContent, IonCardTitle, IonCol, IonFabButton, IonIcon, IonItem, IonRow, IonLabel } from '@ionic/react';
+import { removeOutline, addOutline, pin } from 'ionicons/icons';
 import './CounterComponent.css';
 
 import { useState } from 'react';
-import { MAX_STUDENTS } from "../globals";
+import { MAX_STUDENTS, TaskTypes } from "../globals";
 
 interface CounterComponentProps { 
   id: string;
   label: string;
-  pictogram: string;
+  pictograms: Array<string>;
+  type: TaskTypes;
+
 }
 
 const CounterComponent: React.FC<CounterComponentProps> = (props: CounterComponentProps) => {
-  // const { name } = useParams<>();
 
   var counterSession = sessionStorage.getItem("counter_" + props.id);
   var initCounter = 0;
@@ -34,14 +35,23 @@ const CounterComponent: React.FC<CounterComponentProps> = (props: CounterCompone
     }
   };
 
+  const pictograms =  <IonRow class='ion-justify-content-evenly'>
+                        {props.pictograms.map(pictogram => {
+                          return  <IonCol class='fit-width'>
+                                    <IonImg src={pictogram} />
+                                  </IonCol>
+                        })}
+                      </IonRow>
+
   return (
     <>
+      {props.type == TaskTypes.Material? pictograms : null}
       <IonCard color="secondary">
-          <IonImg src={props.pictogram} />
+          {props.type == TaskTypes.Comanda? <IonImg src={props.pictograms[0]}/> : null}
           <IonCardTitle>{props.label}</IonCardTitle>
       </IonCard>
       <IonCardContent>
-        <IonGrid class='card-grid'>
+        <IonGrid class='card-grid'> 
           <IonRow>
             <IonCol>
               <IonFabButton color="danger" onClick={handleMinusClick} id={"minus_" + props.id}>

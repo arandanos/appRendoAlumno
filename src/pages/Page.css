@@ -24,4 +24,15 @@ ion-col{
     max-height: fit-content;
 }
 
+.fit-width{
+    max-width: fit-content;
+    margin: 0;
+}
+
+/** Estilo para la barra horizontal de separación */
+hr {
+    border: 2px solid var(--ion-color-primary);
+    background-color: var(--ion-color-primary);
+    width: 100%;
+}
 

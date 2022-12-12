@@ -34,6 +34,11 @@ const Tasks: React.FC = () => {
     if(task["_type"] == "COMANDA"){
       href = "/elige_clase/" + task["_id"]
     }
+    else if (task["_type"] == "MATERIAL") {
+      href = '/material/' + task["_id"]
+    }
+
+
 
     return href
   }

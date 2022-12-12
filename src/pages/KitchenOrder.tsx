@@ -5,6 +5,7 @@ import { sendGetAllRequest, sendGetByIDRequest, sendPutRequest } from '../ApiMet
 import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
 import { useHistory } from "react-router-dom";
+import { TaskTypes } from '../globals';
 
 interface KitchenOrderPageProps
   extends RouteComponentProps<{
@@ -62,10 +63,12 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
     if (details.indexOf(detail) % 2 == 0 && details.indexOf(detail) != details.length - 1) {
       hr = <hr />
     }
+    var pictogram : Array<string> = [];
+    pictogram.push(detail['_dish']['_name']['_pictogram']);
     return (
       <>
         <div>
-          <CounterComponent id={detail['_id']} label={detail['_dish']['_name']['_text']} pictogram={detail['_dish']['_name']['_pictogram']} />
+          <CounterComponent type={TaskTypes.Comanda} id={detail['_id']} label={detail['_dish']['_name']['_text']} pictograms={pictogram} />
         </div>
         {hr}
       </>
