@@ -71,7 +71,14 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
     return (
       <>
         <div>
-          <CounterComponent type={TaskTypes.Comanda} id={detail['_id']} label={detail['_dish']['_name']['_text']} pictograms={pictogram} />
+          {/* <CounterComponent type={TaskTypes.Comanda} id={detail['_id']} label={detail['_dish']['_name']['_text']} pictograms={pictogram} /> */}
+          <IonRow class='ion-justify-content-evenly'>
+            {pictogram.map(pictogram => {
+              return  <IonCol class='fit-width'>
+                        <IonImg src={pictogram} />
+                      </IonCol>
+            })}
+          </IonRow>
         </div>
         {hr}
           <IonGrid class='button-grid'>

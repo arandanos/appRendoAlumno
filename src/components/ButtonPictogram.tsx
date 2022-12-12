@@ -4,7 +4,7 @@ import './ButtonPictogram.css';
 interface ButtonProps { 
   label?: string;
   pictogram: string;
-  square: boolean;
+  square?: boolean;
   href?: string;
   id?: string;
 }
@@ -36,12 +36,12 @@ const ButtonPictogram: React.FC<ButtonProps> = (props: ButtonProps) => {
     }
   }
 
-
   return (
     <IonButton color="secondary" class={props.square ? "button-pictogram-square" : "button-pictogram"} href={props.href} id={props.id}>
       <ButtonContent/>
     </IonButton>
   );
+  
 }
 
 export default ButtonPictogram;
