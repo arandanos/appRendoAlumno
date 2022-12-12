@@ -23,6 +23,7 @@ import './theme/variables.css';
 import Tasks from './pages/Tasks';
 import SelectClass from './pages/SelectClass';
 import KitchenOrder from './pages/KitchenOrder';
+import KitchenOrderPictogram from './pages/KitchenOrderPictogram';
 import { Route } from 'react-router';
 import MaterialTask from './pages/MaterialTask';
 
@@ -39,6 +40,7 @@ const App: React.FC = () => {
             <Route exact path="/tareas" component={Tasks}></Route>
             <Route exact path="/elige_clase/:id_task" component={SelectClass}></Route>
             <Route exact path="/comanda/:id_task/:id_class" component={KitchenOrder}></Route>
+            <Route exact path="/comanda_pictogram/:id_task/:id_class" component={KitchenOrderPictogram}></Route>
             <Route exact path="/material/:id_task" component={MaterialTask}></Route>
           </IonRouterOutlet>
         </IonSplitPane>

@@ -2,10 +2,10 @@ import { IonGrid, IonButton, IonImg, IonText } from '@ionic/react';
 import './ButtonPictogram.css';
 
 interface ButtonProps { 
-  label: string;
+  label?: string;
   pictogram: string;
   square: boolean;
-  href: string;
+  href?: string;
   id?: string;
 }
 
