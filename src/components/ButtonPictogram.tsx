@@ -7,6 +7,7 @@ interface ButtonProps {
   square?: boolean;
   href?: string;
   id?: string;
+  number?: boolean;
 }
 
 const ButtonPictogram: React.FC<ButtonProps> = (props: ButtonProps) => {
@@ -36,11 +37,19 @@ const ButtonPictogram: React.FC<ButtonProps> = (props: ButtonProps) => {
     }
   }
 
-  return (
-    <IonButton color="secondary" class={props.square ? "button-pictogram-square" : "button-pictogram"} href={props.href} id={props.id}>
-      <ButtonContent/>
-    </IonButton>
-  );
+  if (props.number) {
+    return (
+      <IonButton color="secondary" class="button-pictogram-number" href={props.href} id={props.id}>
+        <ButtonContent/>
+      </IonButton>
+    );
+  } else {
+    return (
+      <IonButton color="secondary" class={props.square ? "button-pictogram-square" : "button-pictogram"} href={props.href} id={props.id}>
+        <ButtonContent/>
+      </IonButton>
+    );
+  }
   
 }
 

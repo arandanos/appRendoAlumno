@@ -10,7 +10,6 @@ interface CounterComponentProps {
   label: string;
   pictograms: Array<string>;
   type: TaskTypes;
-
 }
 
 const CounterComponent: React.FC<CounterComponentProps> = (props: CounterComponentProps) => {

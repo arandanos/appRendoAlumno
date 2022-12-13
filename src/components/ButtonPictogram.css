@@ -15,6 +15,13 @@
     text-transform: capitalize;
 }
 
+.button-pictogram-number {
+    height: fit-content;    
+    min-width: var(--pictogram-large-width);
+    max-width: var(--pictogram-large-width);
+    text-transform: capitalize;
+}
+
 .pictogram-on-button{
     min-width: var(--pictogram-large-width);
     max-width: var(--pictogram-large-width);

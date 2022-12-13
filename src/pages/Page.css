@@ -29,6 +29,11 @@ ion-col{
     margin: 0;
 }
 
+.big-pictogram{
+    min-width: var(--large-button-width);
+    max-width: var(--large-button-width);
+}
+
 /** Estilo para la barra horizontal de separación */
 hr {
     border: 2px solid var(--ion-color-primary);
