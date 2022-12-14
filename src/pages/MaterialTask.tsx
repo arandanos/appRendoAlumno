@@ -74,8 +74,7 @@ const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
 
         var label : string = detail['_quantity'] + " " + detail!['_material']['_type']['_name']['_text'] + " " + detail!['_material']['_color']['_text'];
 
-
-        return(<div>                
+       return(<div>                
                  <CounterComponent type={TaskTypes.Material} id={detail['_id']} label={label} pictograms={pictograms}></CounterComponent>
               </div>)        
     })
