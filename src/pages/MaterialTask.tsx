@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
-import { sendGetByIDRequest } from "../ApiMethods";
+import { sendGetByIDRequest, sendPutRequest } from "../ApiMethods";
 import CounterComponent from "../components/CounterComponent";
 import Pagination from "./PaginationArray";
 import { TaskTypes } from "../globals";
+import { IonCard, IonImg, IonCardTitle } from "@ionic/react";
+import { title } from "process";
 
 interface MaterialTaskProps extends RouteComponentProps<{
     id_task: string;
@@ -12,16 +14,44 @@ interface MaterialTaskProps extends RouteComponentProps<{
 const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
 
     const [task, setTask] = useState();
+    const [details, setDetails] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     var array : Array<JSX.Element> = [];
 
     useEffect(()=>{
-        sendGetByIDRequest('material_task/task', match.params.id_task).then(materialTask => {
+        sendGetByIDRequest('material_task/task', match.params.id_task).then(materialTask => {            
             setTask(materialTask);
-            setIsLoading(false)
+            
+            sendGetByIDRequest('material_task_detail/task', materialTask['_id']).then(details => {            
+                setDetails(details);  
+                
+                setIsLoading(false)
+            })
+            
         })
     }, [])
+
+    const HandleDoneClick = () => {
+        details.map(detail =>{
+            var counter = sessionStorage.getItem('counter_' + detail['_id'])
+
+            sendGetByIDRequest('material', detail['_material']['_id']).then(material =>{
+               
+                var newQuantity = Number(material['_quantity']) - Number(counter);
+
+                var data = {
+                    '_quantity': newQuantity.toString()
+                };
+
+                sendPutRequest('material', material['_id'], data).then(() => {
+                    sessionStorage.removeItem('counter_' + detail['_id']);
+                })
+
+            })
+
+        })
+    }
 
     if(isLoading) {
         // * AQUI IRA EL SPLASH DE CARGA
@@ -32,14 +62,24 @@ const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
         );
     }
 
-    var pictograms : Array<string> = [];
-    pictograms.push(task!['_task']['_name']['_pictogram']);
-    array.push(
-        <div>
-            <CounterComponent type={TaskTypes.Material} id="1" label="1 Lapiz Rojo" pictograms={pictograms}></CounterComponent>
-        </div>
-    );
+    const nombreClase = <IonCard color="secondary">
+                            <IonImg src={task!['_classroom']['_name']['_pictogram']}/> 
+                            <IonCardTitle>{task!['_classroom']['_name']['_text']}</IonCardTitle>
+                        </IonCard>
     
-    return <Pagination name={task!['_task']['_name']['_text']} pictogram={task!['_task']['_name']['_pictogram']} itemsPerPage={1} items={array} doneUrl="/tareas"></Pagination>
+    array = details!.map( detail => {
+        var pictograms : Array<string> = [];
+        pictograms.push(detail!['_material']['_type']['_name']['_pictogram']);
+        pictograms.push(detail!['_material']['_color']['_pictogram']);
+
+        var label : string = detail['_quantity'] + " " + detail!['_material']['_type']['_name']['_text'] + " " + detail!['_material']['_color']['_text'];
+
+
+        return(<div>                
+                 <CounterComponent type={TaskTypes.Material} id={detail['_id']} label={label} pictograms={pictograms}></CounterComponent>
+              </div>)        
+    })
+    
+    return <Pagination name={task!['_task']['_name']['_text']} pictogram={task!['_task']['_name']['_pictogram']} itemsPerPage={1} items={array} doneUrl="/tareas" title={nombreClase} doneAction={HandleDoneClick}></Pagination>
 }
 export default MaterialTask;
