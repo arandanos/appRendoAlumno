@@ -7,6 +7,8 @@ import { IonRow } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
 import { RouteComponentProps } from 'react-router';
 import KitchenOrder from './KitchenOrder';
+import LoadingPage from './LoadingPage';
+import Header from '../components/Header';
 
 interface SelectClassProps extends RouteComponentProps<{
   id_task: string;
@@ -32,12 +34,10 @@ const SelectClass: React.FC<SelectClassProps> = ({match}) => {
   if(isLoading) {
     // * AQUI IRA EL SPLASH DE CARGA
     return(
-      <div className="App">
-        <h1>Cargando...</h1>
-      </div>
+      <LoadingPage/>
     );
   }
- 
+
   array = items.map(element => {
     return(
       <IonRow class='ion-justify-content-center'>
@@ -46,8 +46,12 @@ const SelectClass: React.FC<SelectClassProps> = ({match}) => {
     )
   })
 
+
+  // * Definimos el header de la página para poder usarlo en el componente de la Paginación
+  const header = <Header name={task['_due_date'] + " Elige Clase"} pictogram='https://api.arasaac.org/api/pictograms/9815?resolution=500&download=false'></Header>
+
   return (
-    <Pagination items={array} itemsPerPage={4} name={task['_due_date'] + " Elige Clase" } pictogram='https://api.arasaac.org/api/pictograms/9815?resolution=500&download=false'/>
+    <Pagination items={array} itemsPerPage={4} header={header}/>
   );
 };
 

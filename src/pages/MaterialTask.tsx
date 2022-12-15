@@ -5,7 +5,8 @@ import CounterComponent from "../components/CounterComponent";
 import Pagination from "./PaginationArray";
 import { TaskTypes } from "../globals";
 import { IonCard, IonImg, IonCardTitle } from "@ionic/react";
-import { title } from "process";
+import LoadingPage from "./LoadingPage";
+import Header from "../components/Header";
 
 interface MaterialTaskProps extends RouteComponentProps<{
     id_task: string;
@@ -16,7 +17,7 @@ const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
     const [task, setTask] = useState();
     const [details, setDetails] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-
+    
     var array : Array<JSX.Element> = [];
 
     useEffect(()=>{
@@ -25,12 +26,18 @@ const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
             
             sendGetByIDRequest('material_task_detail/task', materialTask['_id']).then(details => {            
                 setDetails(details);  
-                
                 setIsLoading(false)
             })
             
         })
     }, [])
+
+    if(isLoading) {
+        // * AQUI IRA EL SPLASH DE CARGA
+        return(
+           <LoadingPage/>
+        );
+    }
 
     const HandleDoneClick = () => {
         details.map(detail =>{
@@ -53,15 +60,6 @@ const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
         })
     }
 
-    if(isLoading) {
-        // * AQUI IRA EL SPLASH DE CARGA
-        return(
-            <div className="App">
-                <h1>Cargando...</h1>
-            </div>
-        );
-    }
-
     const nombreClase = <IonCard color="secondary">
                             <IonImg src={task!['_classroom']['_name']['_pictogram']}/> 
                             <IonCardTitle>{task!['_classroom']['_name']['_text']}</IonCardTitle>
@@ -79,7 +77,12 @@ const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
                  <CounterComponent type={TaskTypes.Material} id={detail['_id']} label={label} pictograms={pictograms}></CounterComponent>
               </div>)        
     })
+
+
+    // * Definimos el header de la página para poder usarlo en el componente de la Paginación
+    const header = <Header name={task!['_task']['_name']['_text']} pictogram={task!['_task']['_name']['_pictogram']}></Header>
+
     
-    return <Pagination name={task!['_task']['_name']['_text']} pictogram={task!['_task']['_name']['_pictogram']} itemsPerPage={1} items={array} doneUrl="/tareas" title={nombreClase} doneAction={HandleDoneClick}></Pagination>
+    return <Pagination header={header} itemsPerPage={1} items={array} doneUrl="/tareas" title={nombreClase} doneAction={HandleDoneClick}></Pagination>
 }
 export default MaterialTask;

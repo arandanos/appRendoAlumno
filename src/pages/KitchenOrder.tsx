@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
 import { useHistory } from "react-router-dom";
 import { TaskTypes } from '../globals';
+import LoadingPage from './LoadingPage';
+import Header from '../components/Header';
 
 interface KitchenOrderPageProps
   extends RouteComponentProps<{
@@ -20,8 +22,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
   const [details, setDetail] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true)
   const ITEMS_PER_PAGE = 2;
-  const history = useHistory();
-  
+
   useEffect(() => {
       // * Obtengo la comanda correspondiente
     sendGetByIDRequest("kitchen_order/task", match.params.id_task).then(order => {
@@ -51,9 +52,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
   if(isLoading) {
     // * AQUI IRA EL SPLASH DE CARGA
     return(
-      <div className="App">
-        <h1>Cargando...</h1>
-      </div>
+      <LoadingPage/>
     );
   }
 
@@ -94,8 +93,12 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
  
     // *****
 
+  
+  // * Definimos el header de la página para poder usarlo en el componente de la Paginación
+  const header = <Header name={"La Comida " + classroom!['_name']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' />
+
   return (
-    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_name']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl={'/elige_clase/' + match.params.id_task} doneAction={doneAction} />
+    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE}  doneUrl={'/elige_clase/' + match.params.id_task} doneAction={doneAction} header={header}/>
   );
 
   

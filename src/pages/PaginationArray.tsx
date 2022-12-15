@@ -6,8 +6,7 @@ import './Page.css';
 
 interface PaginationProps {
   itemsPerPage: number;
-  name: string;
-  pictogram: string;
+  header: JSX.Element;
   doneUrl?: string;
   doneAction?: any;
   items: Array<JSX.Element>
@@ -49,7 +48,7 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
 
   return (
     <IonPage>
-      <Header name={props.name} pictogram={props.pictogram}/>
+      {props.header}
       <IonContent fullscreen>
         
         <IonGrid class='button-grid grid-with-bottom-nav'>

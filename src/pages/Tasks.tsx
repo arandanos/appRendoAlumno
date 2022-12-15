@@ -5,6 +5,8 @@ import Pagination from './PaginationArray';
 import { sendGetAllRequest } from '../ApiMethods';
 import { IonRow } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
+import LoadingPage from './LoadingPage';
+import Header from '../components/Header';
 
 const Tasks: React.FC = () => {
 
@@ -18,15 +20,14 @@ const Tasks: React.FC = () => {
     })
   }, [])
 
+
   var array : Array<JSX.Element> = [];
   if(isLoading) {
     // * AQUI IRA EL SPLASH DE CARGA
-    return(
-      <div className="App">
-        <h1>Cargando...</h1>
-      </div>
-    );
+   return <LoadingPage></LoadingPage>
   }
+
+
 
   var generateHref = (task : any) => {
     let href= "#"
@@ -51,8 +52,11 @@ const Tasks: React.FC = () => {
     )
   })
 
+  // * Definimos el header de la página para poder usarlo tanto en la página de carga como en el componente de la Paginación
+  const header = <Header name="Mis tareas" pictogram="https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false" />;
+
   return (
-    <Pagination items={array} itemsPerPage={4} name="Mis Tareas" pictogram='https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false' />
+    <Pagination items={array} itemsPerPage={4} header={header} />
   );
 };
 
