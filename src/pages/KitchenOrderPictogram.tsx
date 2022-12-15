@@ -85,9 +85,9 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
           </IonRow>
         </div>
         {hr}
-          <IonSegment value="buttons">
-            <IonGrid class='button-grid'>
-    
+        <IonSegment value="buttons">
+          <IonGrid class='button-grid'>
+
             <IonRow>
               <IonCol>
                 <IonSegmentButton value="1">
@@ -103,22 +103,20 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
               </IonCol>
               <IonCol>
 
-              <IonSegmentButton value="3">
+                <IonSegmentButton value="3">
                   <IonLabel>3</IonLabel>
                 </IonSegmentButton>
               </IonCol>
-
             </IonRow>
 
-          
             <IonRow>
               <IonCol>
                 <IonSegmentButton value="4">
                   <IonLabel>4</IonLabel>
                 </IonSegmentButton>
               </IonCol>
-              <IonCol>
 
+              <IonCol>
                 <IonSegmentButton value="5">
                   <IonLabel>5</IonLabel>
                 </IonSegmentButton>
@@ -130,9 +128,9 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
                 </IonSegmentButton>
               </IonCol>
 
-                </IonRow>
-            </IonGrid>
-          </IonSegment>
+            </IonRow>
+          </IonGrid>
+        </IonSegment>
 
         
           {/* <IonRow class='ion-justify-content-evenly'>
