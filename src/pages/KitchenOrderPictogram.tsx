@@ -113,7 +113,6 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
           
             <IonRow>
               <IonCol>
-
                 <IonSegmentButton value="4">
                   <IonLabel>4</IonLabel>
                 </IonSegmentButton>
