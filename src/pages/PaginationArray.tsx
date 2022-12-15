@@ -10,7 +10,7 @@ interface PaginationProps {
   doneUrl?: string;
   doneAction?: any;
   items: Array<JSX.Element>
-  title?: any;
+  title?: JSX.Element; //* Para páginas con un título arriba antes del contenido
 }
 
 const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {

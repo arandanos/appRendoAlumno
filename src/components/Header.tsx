@@ -3,11 +3,12 @@
   import './Header.css';
 
   interface HeaderProps {
-    name: string; 
-    pictogram: string
+    name?: string; 
+    pictogram?: string;
+    classPictogram?: string;
   }
   
-const Header: React.FC<HeaderProps> = ( args: HeaderProps ) => {
+const Header: React.FC<HeaderProps> = ( props: HeaderProps ) => {
 
     return (
         <IonHeader>
@@ -19,11 +20,12 @@ const Header: React.FC<HeaderProps> = ( args: HeaderProps ) => {
             </IonFabButton>
           </IonButtons>
           
-          <IonImg slot='start' class="pictogram-header" src={args.pictogram} ></IonImg>
+          <IonImg slot='start' class="pictogram-header" src={props.pictogram} ></IonImg>
+          {props.classPictogram? <IonImg slot='start' class="pictogram-header" src={props.classPictogram}/> : null}
          
           <IonTitle>
             <IonRow class="ion-text-wrap">
-              {args.name}
+              {props.name}
             </IonRow>            
           </IonTitle>
         </IonToolbar>

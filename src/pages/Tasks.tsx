@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Page.css';
 import Pagination from './PaginationArray';
 
-import { sendGetAllRequest } from '../ApiMethods';
+import { getPictogram, sendGetAllRequest } from '../ApiMethods';
 import { IonRow } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
 import LoadingPage from './LoadingPage';
@@ -39,15 +39,13 @@ const Tasks: React.FC = () => {
       href = '/material/' + task["_id"]
     }
 
-
-
     return href
   }
 
   var array : Array<JSX.Element> = items.map(task => {
     return(
       <IonRow class='ion-justify-content-center'>
-        <ButtonPictogram id={task['_id']} label={task['_name']['_text']} pictogram={task['_name']['_pictogram']} square={false} href={generateHref(task)} />
+        <ButtonPictogram id={task['_id']} label={task['_name']['_text']} pictogram={getPictogram(task['_name']['_pictogram'])} square={false} href={generateHref(task)} />
       </IonRow>
     )
   })

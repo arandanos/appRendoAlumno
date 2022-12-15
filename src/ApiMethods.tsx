@@ -44,3 +44,8 @@ export const sendPutRequest = (url : string, id : string, data : {}) => {
     })
   }
 
+export const getPictogram = (pictogram: string) => {
+    if (!pictogram.startsWith("http"))
+        pictogram = API_URL + "image/" + pictogram;
+    return pictogram;
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Page.css';
 import Pagination from './PaginationArray';
 
-import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
+import { getPictogram, sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
 import { IonRow } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
 import { RouteComponentProps } from 'react-router';
@@ -41,7 +41,7 @@ const SelectClass: React.FC<SelectClassProps> = ({match}) => {
   array = items.map(element => {
     return(
       <IonRow class='ion-justify-content-center'>
-        <ButtonPictogram id={element['_id']} label={element['_name']['_text']} pictogram={element['_name']['_pictogram']} square={false} href={"/comanda/" + match.params.id_task + "/" + element['_id']} />
+        <ButtonPictogram id={element['_id']} label={element['_name']['_text']} pictogram={getPictogram(element['_name']['_pictogram'])} square={false} href={"/comanda/" + match.params.id_task + "/" + element['_id']} />
       </IonRow>
     )
   })

@@ -1,10 +1,9 @@
 import './Page.css';
 import CounterComponent from '../components/CounterComponent';
 import { RouteComponentProps } from 'react-router';
-import { sendGetAllRequest, sendGetByIDRequest, sendPutRequest } from '../ApiMethods';
+import { sendGetAllRequest, sendGetByIDRequest, sendPutRequest, getPictogram } from '../ApiMethods';
 import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
-import { useHistory } from "react-router-dom";
 import { TaskTypes } from '../globals';
 import LoadingPage from './LoadingPage';
 import Header from '../components/Header';
@@ -63,7 +62,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
       hr = <hr />
     }
     var pictogram : Array<string> = [];
-    pictogram.push(detail['_dish']['_name']['_pictogram']);
+    pictogram.push(getPictogram(detail['_dish']['_name']['_pictogram']));
     return (
       <>
         <div>
@@ -93,9 +92,10 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
  
     // *****
 
-  
+  const taskPictogram = getPictogram(kitchenOrder!["_task"]["_name"]["_pictogram"]);
+  const classPictogram = getPictogram(classroom!["_name"]["_pictogram"]);
   // * Definimos el header de la página para poder usarlo en el componente de la Paginación
-  const header = <Header name={"La Comida " + classroom!['_name']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' />
+  const header = <Header name={kitchenOrder!["_task"]["_name"]["_text"]} pictogram={taskPictogram} classPictogram={classPictogram}  />
 
   return (
     <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE}  doneUrl={'/elige_clase/' + match.params.id_task} doneAction={doneAction} header={header}/>

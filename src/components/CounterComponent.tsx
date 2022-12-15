@@ -10,20 +10,35 @@ interface CounterComponentProps {
   label: string;
   pictograms: Array<string>;
   type: TaskTypes;
-
+  maxCounter? : Number;
 }
 
 const CounterComponent: React.FC<CounterComponentProps> = (props: CounterComponentProps) => {
 
   var counterSession = sessionStorage.getItem("counter_" + props.id);
   var initCounter = 0;
+  var maxCounter : any;
+
+
+  switch (props.type) {
+    case TaskTypes.Comanda:
+      maxCounter = MAX_STUDENTS;
+      break;
+    case TaskTypes.Material:
+      maxCounter = props.maxCounter;
+      break;
+  
+    default:
+      break;
+  }
+ 
   if(counterSession != null)
     initCounter = Number(counterSession)
 
   const [counter, setCounter] = useState(initCounter);
 
   const handlePlusClick = () => {
-    if(counter < MAX_STUDENTS){
+    if(counter < maxCounter){
       setCounter(counter+1);
       sessionStorage.setItem("counter_" + props.id, JSON.stringify(counter+1))
     }
@@ -46,7 +61,7 @@ const CounterComponent: React.FC<CounterComponentProps> = (props: CounterCompone
   return (
     <>
       {props.type == TaskTypes.Material? pictograms : null}
-      <IonCard color="secondary">
+      <IonCard color="secondary" class={props.type == TaskTypes.Comanda? "kitchen-detail-counter" : ""}>
           {props.type == TaskTypes.Comanda? <IonImg src={props.pictograms[0]}/> : null}
           <IonCardTitle>{props.label}</IonCardTitle>
       </IonCard>
