@@ -25,6 +25,7 @@ import SelectClass from './pages/SelectClass';
 import KitchenOrder from './pages/KitchenOrder';
 import { Route } from 'react-router';
 import MaterialTask from './pages/MaterialTask';
+import LoginPassword from './pages/LoginPassword';
 
 setupIonicReact();
 
@@ -40,6 +41,7 @@ const App: React.FC = () => {
             <Route exact path="/elige_clase/:id_task" component={SelectClass}></Route>
             <Route exact path="/comanda/:id_task/:id_class" component={KitchenOrder}></Route>
             <Route exact path="/material/:id_task" component={MaterialTask}></Route>
+            <Route exact path="/login_password" component={LoginPassword}></Route>
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>

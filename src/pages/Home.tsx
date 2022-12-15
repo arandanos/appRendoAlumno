@@ -10,7 +10,7 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <Header name="Inicio" pictogram='https://api.arasaac.org/api/pictograms/2317?resolution=500&download=false'/>
+      <Header name="Inicio" pictogram='https://api.arasaac.org/api/pictograms/2317?resolution=500&download=false' login={false}/>
       <IonContent fullscreen>
         <IonGrid class='button-grid'>
           <IonRow class='ion-justify-content-between'>
@@ -23,7 +23,7 @@ const Home: React.FC = () => {
           </IonRow>
           <IonRow class='ion-justify-content-between'>
             <IonCol size='auto'>
-              <ButtonPictogram label="Urgente" pictogram='https://api.arasaac.org/api/pictograms/36675?resolution=500&download=false' square={true} href="#"/>
+              <ButtonPictogram label="Urgente" pictogram='https://api.arasaac.org/api/pictograms/36675?resolution=500&download=false' square={true} href="/login_password"/>
             </IonCol>
             <IonCol size="auto">
               <ButtonPictogram label="Histórico" pictogram='https://api.arasaac.org/api/pictograms/9174?resolution=500&download=false' square={true} href="#"/> 
