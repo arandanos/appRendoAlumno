@@ -10,7 +10,7 @@
 
 .button-pictogram {
     height: fit-content;    
-    min-width: var(--pictogram-large-width);
+    min-width: var(--large-button-width);
     max-width: var(--large-button-width);
     text-transform: capitalize;
 }

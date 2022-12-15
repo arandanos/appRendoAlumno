@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
 import { useHistory } from "react-router-dom";
 import React from 'react';
-import { IonCol, IonGrid, IonImg, IonRow } from '@ionic/react';
+import { IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSegment, IonSegmentButton } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
 
 interface KitchenOrderPageProps
@@ -85,8 +85,58 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
           </IonRow>
         </div>
         {hr}
-          <IonGrid class='button-grid'>
-            <IonRow class='ion-justify-content-evenly'>
+          <IonSegment value="buttons">
+            <IonGrid class='button-grid'>
+    
+            <IonRow>
+              <IonCol>
+                <IonSegmentButton value="1">
+                  {/* <IonImg class='fit-width' src="https://api.arasaac.org/api/pictograms/7291?resolution=500&download=false"></IonImg> */}
+                  <IonLabel>1</IonLabel>
+                </IonSegmentButton>
+              </IonCol>
+
+              <IonCol>
+                <IonSegmentButton value="2">
+                  <IonLabel>2</IonLabel>
+                </IonSegmentButton>
+              </IonCol>
+              <IonCol>
+
+              <IonSegmentButton value="3">
+                  <IonLabel>3</IonLabel>
+                </IonSegmentButton>
+              </IonCol>
+
+            </IonRow>
+
+          
+            <IonRow>
+              <IonCol>
+
+                <IonSegmentButton value="4">
+                  <IonLabel>4</IonLabel>
+                </IonSegmentButton>
+              </IonCol>
+              <IonCol>
+
+                <IonSegmentButton value="5">
+                  <IonLabel>5</IonLabel>
+                </IonSegmentButton>
+              </IonCol>
+              <IonCol>
+
+                <IonSegmentButton value="6">
+                  <IonLabel>6</IonLabel>
+                </IonSegmentButton>
+              </IonCol>
+
+                </IonRow>
+            </IonGrid>
+          </IonSegment>
+
+        
+          {/* <IonRow class='ion-justify-content-evenly'>
               <IonCol class='fit-width' onClick={() =>sum(1)}>
                 <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7291?resolution=500&download=false' square={true} number={true} />
               </IonCol>
@@ -107,8 +157,8 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
               <IonCol class='fit-width' onClick={() =>sum(6)}>
                 <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7241?resolution=500&download=false' square={true} number={true}/>
               </IonCol>
-            </IonRow>
-        </IonGrid>
+            </IonRow> */}
+        {/* </IonGrid> */}
       </>
     );
   })

@@ -41,3 +41,7 @@ hr {
     width: 100%;
 }
 
+.segment-button{
+    display: grid;
+}
+
