@@ -68,7 +68,7 @@ const LoginPictogram: React.FC = () => {
 
                     <IonRow class="row">
                         <IonCol>
-                            <ButtonLogin></ButtonLogin>
+                            <ButtonLogin LoginPictogram></ButtonLogin>
                         </IonCol>                    
                     </IonRow>   
                 </IonGrid>
