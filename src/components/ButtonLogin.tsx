@@ -5,30 +5,14 @@ import './ButtonLogin.css';
 interface ButtonProps { 
   href?: MouseEventHandler;
   id?: string;
+  
 }
 
 const ButtonLogin: React.FC<ButtonProps> = (props: ButtonProps) => {
- 
-
-  var ButtonElements = () => {
-    return (
-      <>
-        <IonText class='large-text ion-text-wrap'>Iniciar Sesion</IonText>
-      </>
-    );
-  }
-
-
-  var ButtonContent = () => {    
-      return (
-        <ButtonElements/>
-      );    
-  }
-
 
   return (
     <IonButton color="secondary" class="buttonLogin" onClick={props.href} id={props.id} >
-      <ButtonContent/>
+      <IonText class='large-text ion-text-wrap'>Iniciar Sesión</IonText>
     </IonButton>
   );
 }
