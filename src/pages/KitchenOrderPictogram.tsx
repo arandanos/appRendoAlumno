@@ -3,11 +3,9 @@ import { RouteComponentProps } from 'react-router';
 import { sendGetAllRequest, sendGetByIDRequest, sendPutRequest } from '../ApiMethods';
 import { useEffect, useState } from 'react';
 import Pagination from './PaginationArray';
-import { useHistory } from "react-router-dom";
 import React from 'react';
 import { IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSegment, IonSegmentButton } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
-import Header from '../components/Header';
 
 interface KitchenOrderPageProps
   extends RouteComponentProps<{
@@ -21,11 +19,10 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
   const [classroom, setClassroom] = useState(null);
   const [details, setDetail] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true);
-  let [rechargedCoins, setRechargedCoins] = React.useState(0);
+  
   let number = 0;
   let a: number;
   const ITEMS_PER_PAGE = 1;
-  const history = useHistory();
   
   useEffect(() => {
       // * Obtengo la comanda correspondiente
@@ -93,19 +90,19 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
               <IonCol class='fit-width'>
                 <IonSegmentButton value="1" class="segment-button">
                   {/* <IonImg class='fit-width' src="https://api.arasaac.org/api/pictograms/7291?resolution=500&download=false"></IonImg> */}
-                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7291?resolution=500&download=false' square={false} number={true} /></IonLabel>
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7291?resolution=500&download=false' square={false} number={true}/></IonLabel>
                 </IonSegmentButton>
               </IonCol>
 
               <IonCol class='fit-width'>
                 <IonSegmentButton value="2" class="segment-button">
-                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7027?resolution=500&download=false' square={false} number={true} /></IonLabel>
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7027?resolution=500&download=false' square={false} number={true}/></IonLabel>
                 </IonSegmentButton>
               </IonCol>
               
               <IonCol class='fit-width'>
                 <IonSegmentButton value="3" class="segment-button">
-                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7283?resolution=500&download=false' square={false} number={true} /></IonLabel>
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7283?resolution=500&download=false' square={false} number={true}/></IonLabel>
                 </IonSegmentButton>
               </IonCol>
             </IonRow>
@@ -114,20 +111,20 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
               <IonCol class='fit-width'>
                 <IonSegmentButton value="4" class="segment-button">
                   <IonLabel>
-                    <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7005?resolution=500&download=false' square={true} number={true} />
+                    <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7005?resolution=500&download=false' square={true} number={true}/>
                   </IonLabel>
                 </IonSegmentButton>
               </IonCol>
 
               <IonCol class='fit-width'>
                 <IonSegmentButton value="5" class="segment-button">
-                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/6979?resolution=500&download=false' square={true} number={true} /></IonLabel>
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/6979?resolution=500&download=false' square={true} number={true}/></IonLabel>
                 </IonSegmentButton>
               </IonCol>
 
               <IonCol class='fit-width'>
                 <IonSegmentButton value="6" class="segment-button">
-                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7241?resolution=500&download=false' square={true} number={true} /></IonLabel>
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7241?resolution=500&download=false' square={true} number={true}/></IonLabel>
                 </IonSegmentButton>
               </IonCol>
             </IonRow>

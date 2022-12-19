@@ -1,4 +1,4 @@
-import { IonGrid, IonButton, IonImg, IonText, IonCard, IonCardContent, IonCardTitle, IonCol, IonFabButton, IonIcon, IonItem, IonRow, IonLabel } from '@ionic/react';
+import { IonGrid, IonImg, IonText, IonCard, IonCardContent, IonCardTitle, IonCol, IonFabButton, IonIcon, IonItem, IonRow, IonLabel } from '@ionic/react';
 import { removeOutline, addOutline, pin } from 'ionicons/icons';
 import './CounterComponent.css';
 
