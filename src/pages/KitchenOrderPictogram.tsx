@@ -88,74 +88,51 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
         <IonSegment value="buttons">
           <IonGrid class='button-grid'>
 
-            <IonRow>
-              <IonCol>
-                <IonSegmentButton value="1">
+            <IonRow class='ion-justify-content-evenly'>
+              <IonCol class='fit-width'>
+                <IonSegmentButton value="1" class="segment-button">
                   {/* <IonImg class='fit-width' src="https://api.arasaac.org/api/pictograms/7291?resolution=500&download=false"></IonImg> */}
-                  <IonLabel>1</IonLabel>
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7291?resolution=500&download=false' square={false} number={true} /></IonLabel>
                 </IonSegmentButton>
               </IonCol>
 
-              <IonCol>
-                <IonSegmentButton value="2">
-                  <IonLabel>2</IonLabel>
+              <IonCol class='fit-width'>
+                <IonSegmentButton value="2" class="segment-button">
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7027?resolution=500&download=false' square={false} number={true} /></IonLabel>
                 </IonSegmentButton>
               </IonCol>
-              <IonCol>
-
-                <IonSegmentButton value="3">
-                  <IonLabel>3</IonLabel>
+              
+              <IonCol class='fit-width'>
+                <IonSegmentButton value="3" class="segment-button">
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7283?resolution=500&download=false' square={false} number={true} /></IonLabel>
                 </IonSegmentButton>
               </IonCol>
             </IonRow>
 
-            <IonRow>
-              <IonCol>
-                <IonSegmentButton value="4">
-                  <IonLabel>4</IonLabel>
+            <IonRow class='ion-justify-content-evenly'>
+              <IonCol class='fit-width'>
+                <IonSegmentButton value="4" class="segment-button">
+                  <IonLabel>
+                    <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7005?resolution=500&download=false' square={true} number={true} />
+                  </IonLabel>
                 </IonSegmentButton>
               </IonCol>
 
-              <IonCol>
-                <IonSegmentButton value="5">
-                  <IonLabel>5</IonLabel>
-                </IonSegmentButton>
-              </IonCol>
-              <IonCol>
-
-                <IonSegmentButton value="6">
-                  <IonLabel>6</IonLabel>
+              <IonCol class='fit-width'>
+                <IonSegmentButton value="5" class="segment-button">
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/6979?resolution=500&download=false' square={true} number={true} /></IonLabel>
                 </IonSegmentButton>
               </IonCol>
 
+              <IonCol class='fit-width'>
+                <IonSegmentButton value="6" class="segment-button">
+                  <IonLabel><ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7241?resolution=500&download=false' square={true} number={true} /></IonLabel>
+                </IonSegmentButton>
+              </IonCol>
             </IonRow>
+            
           </IonGrid>
         </IonSegment>
-
-        
-          {/* <IonRow class='ion-justify-content-evenly'>
-              <IonCol class='fit-width' onClick={() =>sum(1)}>
-                <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7291?resolution=500&download=false' square={true} number={true} />
-              </IonCol>
-              <IonCol class='fit-width' onClick={() =>sum(2)}>
-                <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7027?resolution=500&download=false' square={true} number={true}/>
-              </IonCol>
-              <IonCol class='fit-width' onClick={() =>sum(3)}>
-                <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7283?resolution=500&download=false' square={true} number={true}/>
-              </IonCol>
-            </IonRow>
-            <IonRow class='ion-justify-content-evenly'>
-              <IonCol class='fit-width' onClick={() =>sum(4)}>
-                <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7005?resolution=500&download=false' square={true} number={true}/>
-              </IonCol>
-              <IonCol class='fit-width' onClick={() =>sum(5)}>
-                <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/6979?resolution=500&download=false' square={true} number={true}/>
-              </IonCol>
-              <IonCol class='fit-width' onClick={() =>sum(6)}>
-                <ButtonPictogram pictogram='https://api.arasaac.org/api/pictograms/7241?resolution=500&download=false' square={true} number={true}/>
-              </IonCol>
-            </IonRow> */}
-        {/* </IonGrid> */}
       </>
     );
   })
@@ -180,7 +157,7 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
     // *****
 
   return (
-    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name={"La Comida " + classroom!['_name']['_text']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl={'/elige_clase/' + match.params.id_task} doneAction={doneAction} />
+    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name="1" pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl={'/elige_clase/' + match.params.id_task} doneAction={doneAction} />
   );
 
   

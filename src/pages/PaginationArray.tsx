@@ -6,8 +6,9 @@ import './Page.css';
 
 interface PaginationProps {
   itemsPerPage: number;
-  name: string;
+  name?: string;
   pictogram: string;
+  pictogramchild?: string;
   doneUrl?: string;
   doneAction?: any;
   items: Array<JSX.Element>

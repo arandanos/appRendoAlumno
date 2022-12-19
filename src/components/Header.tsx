@@ -3,7 +3,7 @@
   import './Header.css';
 
   interface HeaderProps {
-    name: string; 
+    name?: string; 
     pictogram: string
   }
   
