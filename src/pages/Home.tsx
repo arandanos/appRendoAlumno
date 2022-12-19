@@ -10,7 +10,7 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <Header name="Inicio" pictogram='https://api.arasaac.org/api/pictograms/2317?resolution=500&download=false' login={false}/>
+      <Header name="Inicio" pictogram='https://api.arasaac.org/api/pictograms/2317?resolution=500&download=false'/>
       <IonContent fullscreen>
         <IonGrid class='button-grid'>
           <IonRow class='ion-justify-content-between'>

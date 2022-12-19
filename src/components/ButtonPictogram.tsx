@@ -3,7 +3,7 @@ import './ButtonPictogram.css';
 
 interface ButtonProps { 
   label: string;
-  pictogram: string;
+  pictogram?: string;
   square: boolean;
   href: string;
   id?: string;

@@ -12,6 +12,23 @@
     max-height: calc(100% - var(--bottom-nav-height));
 }
 
+.grid-with-button{
+    /* TODO Calcular la altura de forma dinamica con variables */
+    height: calc(100% - 80px);
+}
+
+.width-90 {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 5% auto;
+}
+
+.width-100 {
+    min-width: 100%;
+    max-width: 100%;
+    margin: 5% auto;
+}
+
 ion-row{
     min-width: 100%;
     max-width: 100%;
@@ -36,3 +53,25 @@ hr {
     width: 100%;
 }
 
+.button-pictogram-square {
+    min-width: var(--large-square-button-width);
+    max-width: var(--large-square-button-width);
+    height: var(--large-button-height);
+    max-height: var(--large-button-height);
+    --padding-start: 0;
+    --padding-end: 0;
+    text-transform: capitalize;
+}
+
+.button-pictogram {
+    height: fit-content;
+    min-width: var(--large-button-width);
+    max-width: var(--large-button-width);
+    text-transform: capitalize;
+}
+
+.pictogram-on-button{
+    min-width: var(--pictogram-large-width);
+    max-width: var(--pictogram-large-width);
+    margin: 5px auto;
+}
