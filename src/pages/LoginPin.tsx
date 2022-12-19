@@ -9,7 +9,7 @@ const LoginPassword: React.FC = () => {
 
     return (
         <IonPage>
-            <Header noHome={false} name="AppRendo"/>
+            <Header noHome={true} name="AppRendo"/>
             <IonContent fullscreen>
                 <Login name="Nombre de usuario" pictogram={pictogram} placeholder="PIN"></Login>                
             </IonContent>            
