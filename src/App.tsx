@@ -26,6 +26,7 @@ import KitchenOrder from './pages/KitchenOrder';
 import { Route } from 'react-router';
 import MaterialTask from './pages/MaterialTask';
 import LoginPin from './pages/LoginPin';
+import LoginPictogram from './pages/LoginPictogram';
 
 setupIonicReact();
 
@@ -36,7 +37,7 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonSplitPane contentId="main"> 
           <IonRouterOutlet id="main">
-            <Route exact path="/" component={LoginPin}></Route>
+            <Route exact path="/" component={LoginPictogram}></Route>
             <Route exact path="/tareas" component={Tasks}></Route>
             <Route exact path="/elige_clase/:id_task" component={SelectClass}></Route>
             <Route exact path="/comanda/:id_task/:id_class" component={KitchenOrder}></Route>
