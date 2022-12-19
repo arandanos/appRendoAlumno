@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import React from 'react';
 import { IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSegment, IonSegmentButton } from '@ionic/react';
 import ButtonPictogram from '../components/ButtonPictogram';
+import Header from '../components/Header';
 
 interface KitchenOrderPageProps
   extends RouteComponentProps<{
@@ -157,7 +158,7 @@ const KitchenOrderPictogram: React.FC<KitchenOrderPageProps> = ({match}) => {
     // *****
 
   return (
-    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} name="1" pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl={'/elige_clase/' + match.params.id_task} doneAction={doneAction} />
+    <Pagination items={array} itemsPerPage={ITEMS_PER_PAGE} classPictogram={classroom!['_name']['_pictogram']} pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' doneUrl={'/elige_clase/' + match.params.id_task} doneAction={doneAction} />
   );
 
   
