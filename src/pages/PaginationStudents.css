@@ -1,6 +1,18 @@
 
 
 .four-students-grid{
-    margin-top: 30%;
+    margin-top: 15%;
     text-align: center;
+}
+
+#students-grid{
+    margin-left: 4%;
+    margin-right: 4%;
+    max-width: 90%;
+    min-width: 90%;
+}
+
+#margin-top-students{
+    margin-bottom: 5%;
+    margin-top: 10%;
 }

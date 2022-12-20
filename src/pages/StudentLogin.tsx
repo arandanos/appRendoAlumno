@@ -7,6 +7,7 @@ import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
 import PaginationSt from './PaginationStudents';
 import Header from '../components/Header';
 import { IonContent } from '@ionic/react';
+import './PaginationStudents.css';
 
 
 
@@ -34,7 +35,9 @@ const StudentLogin: React.FC<StudentLoginProps> = ({match}) => {
 
     array = items.map(element => {
         return(
-          <ButtonPictogram id={element['_id']} label={element['_name']['_text']} pictogram={element['_name']['_pictogram']} square={true} href={"#"} />
+          <div id ="margin-top-students">
+            <ButtonPictogram id={element['_id']} label={element['_name']['_text']} pictogram={element['_name']['_pictogram']} square={true} href={"#"} />
+          </div>
           )
       })
     

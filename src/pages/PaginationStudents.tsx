@@ -61,11 +61,14 @@ const PaginationSt: React.FC<PaginationStProps> = (props: PaginationStProps) => 
           <IonRow class='ion-justify-content-center'>
             <ButtonPictogram id={''} label={props.classroom} pictogram={"https://api.arasaac.org/api/pictograms/9814?download=false"} square={false} href={"#"} />
           </IonRow>
-          {props.items.map( item => {
-            if ((props.items.indexOf(item) >= currentPage * itemsPerPage) && props.items.indexOf(item) < currentPage * itemsPerPage + itemsPerPage) {
-              return (item)
-            }
-          })}  
+          <IonRow class='ion-justify-content-between' id="students-grid">
+            {props.items.map( item => {
+              if ((props.items.indexOf(item) >= currentPage * itemsPerPage) && props.items.indexOf(item) < currentPage * itemsPerPage + itemsPerPage) {
+                return (item)
+              }
+            })}
+          </IonRow>
+            
         </IonGrid>
         {bottomNav()}
       </IonContent>
