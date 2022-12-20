@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router';
 import { useEffect, useState } from 'react';
 import { sendGetAllRequest, sendGetByIDRequest } from '../ApiMethods';
 import PaginationSt from './PaginationStudents';
+import Header from '../components/Header';
 import { IonContent } from '@ionic/react';
 
 
@@ -38,13 +39,13 @@ const StudentLogin: React.FC<StudentLoginProps> = ({match}) => {
       })
     
     return (
-        
-      <PaginationSt name={'AppRendo'} items={array} classroom={idClase['_name']}></PaginationSt>
+        <>
+          <Header name="AppRendo" noHome={true}/>
+          <IonContent fullscreen>
+            <PaginationSt name={'AppRendo'} items={array} classroom={idClase['_name']}></PaginationSt>
+          </IonContent>
+        </>
     ) 
-
-
-
-
 };
 
 export default StudentLogin;
