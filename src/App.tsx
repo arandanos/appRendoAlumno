@@ -23,6 +23,7 @@ import './theme/variables.css';
 import Tasks from './pages/Tasks';
 import SelectClass from './pages/SelectClass';
 import KitchenOrder from './pages/KitchenOrder';
+import StudentLogin from './pages/StudentLogin';
 import { Route } from 'react-router';
 import MaterialTask from './pages/MaterialTask';
 
@@ -40,6 +41,7 @@ const App: React.FC = () => {
             <Route exact path="/elige_clase/:id_task" component={SelectClass}></Route>
             <Route exact path="/comanda/:id_task/:id_class" component={KitchenOrder}></Route>
             <Route exact path="/material/:id_task" component={MaterialTask}></Route>
+            <Route exact path="/login_alumnos/:id_classroom" component={StudentLogin}></Route>
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
