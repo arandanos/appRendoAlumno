@@ -1,0 +1,25 @@
+.row{
+    min-width: 100%;
+    min-height: 15%;    
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.grid-with-button{
+    /* TODO Calcular la altura de forma dinamica con variables */
+    height: calc(100% - 80px);
+}
+
+.width-90 {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 5% auto;
+}
+
+.imgRow{
+    transform: translate(-35%);
+}
+
+.label{
+    margin-left: 10%;
+}

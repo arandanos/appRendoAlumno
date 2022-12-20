@@ -1,0 +1,14 @@
+ion-card.loading{
+    min-width: 90%;
+    margin: 0 auto;  
+    margin-top: 0 !important; 
+}
+
+.loading ion-card-title{
+    width: 80%;
+    text-align: center;
+}
+
+ion-spinner{
+    margin-left: 15px;
+}
