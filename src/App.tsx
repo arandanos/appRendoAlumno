@@ -38,6 +38,7 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main"> 
           <IonRouterOutlet id="main">
             <Route exact path="/" component={LoginPictogram}></Route>
+            <Route exact path="/home" component={Home}></Route>
             <Route exact path="/tareas" component={Tasks}></Route>
             <Route exact path="/elige_clase/:id_task" component={SelectClass}></Route>
             <Route exact path="/comanda/:id_task/:id_class" component={KitchenOrder}></Route>

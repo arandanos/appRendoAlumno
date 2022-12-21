@@ -4,9 +4,10 @@ import './ButtonLogin.css';
 import { checkmarkOutline } from 'ionicons/icons';
 
 interface ButtonProps { 
-  href?: MouseEventHandler;
+  onClick?: MouseEventHandler;
   id?: string;
   LoginPictogram?: boolean
+  href?: string
   
 }
 
@@ -16,7 +17,7 @@ const ButtonLogin: React.FC<ButtonProps> = (props: ButtonProps) => {
   var ButtonElementsPictogram = () => {
     return (
       <>
-        <IonButton color="success" class="buttonLoginPicto" onClick={props.href} id={props.id} >
+        <IonButton color="success" class="buttonLoginPicto" href={props.href} onClick={props.onClick} id={props.id} >
           <IonIcon icon={checkmarkOutline}></IonIcon>
         </IonButton>
       </>
@@ -26,7 +27,7 @@ const ButtonLogin: React.FC<ButtonProps> = (props: ButtonProps) => {
   var ButtonElementsPIN = () => {
     return (
       <>
-        <IonButton color="secondary" class="buttonLogin" onClick={props.href} id={props.id} >
+        <IonButton color="secondary" class="buttonLogin"  href={props.href} onClick={props.onClick} id={props.id} >
           <IonText class='large-text ion-text-wrap'>Iniciar Sesión</IonText>
         </IonButton>
       </>

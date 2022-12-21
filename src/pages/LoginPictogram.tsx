@@ -2,44 +2,68 @@ import './LoginPictogram.css';
 import {IonCol, IonContent, IonGrid, IonImg, IonPage, IonRadio, IonRow, IonTitle} from '@ionic/react';
 import Header from '../components/Header';
 import ButtonLogin from '../components/ButtonLogin';
-
+import { useState } from 'react';
+import { stringify } from 'querystring';
 
 const LoginPictogram: React.FC = () => {
+  
 
-    var pictogram = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+    const pictograms  = [
+
+        {
+            id: 1,
+            pictogram: "https://api.arasaac.org/api/pictograms/7202?resolution=500&download=false", 
+        },
+
+        {
+            id: 2,
+            pictogram: "https://api.arasaac.org/api/pictograms/7114?resolution=500&download=false",
+        },
+
+        {
+            id: 3,
+            pictogram: "https://api.arasaac.org/api/pictograms/2490?resolution=500&download=false",
+        },
+
+        {
+            id: 4,
+            pictogram: "https://api.arasaac.org/api/pictograms/2343?resolution=500&download=false",
+        }
+    ]   
+
+    
+
+
+    const [images, setImages] = useState(pictograms);
+
+
+
+    
 
     return (
         <IonPage>
-            <Header noHome={true} name="AppRendo"/>
+            <Header pictogram="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" name="Nombre de alumno"/>
             
 
-                <IonGrid>
-                    <IonRow class="row">
-                        <IonCol>
-                            <IonImg src={pictogram}></IonImg>
-                        </IonCol>
-                        <IonCol>
-                            <IonTitle>Nombre de alumno</IonTitle>
-                        </IonCol>
-                    </IonRow>
+                <IonGrid>             
                         
 
-                    <IonRow class="row">
+                    <IonRow class="row-students">
                     <IonGrid class='button-grid'>
-                            <IonRow class="ion-justify-content-center">
+                            <IonRow class="ion-justify-content-evenly row">
                                     <IonCol size='auto'>
-                                        <IonImg src={pictogram}></IonImg>
+                                        <IonImg src={images[0]['pictogram']}  ></IonImg>
                                     </IonCol>
                                     <IonCol size='auto'>
-                                        <IonImg src={pictogram}></IonImg>
+                                        <IonImg src={images[1]['pictogram']} ></IonImg>
                                     </IonCol>
                             </IonRow>
-                            <IonRow class="ion-justify-content-center"> 
+                            <IonRow class="ion-justify-content-evenly row"> 
                                     <IonCol size='auto'>
-                                        <IonImg src={pictogram}></IonImg>
+                                        <IonImg src={images[2]['pictogram']} ></IonImg>
                                     </IonCol>
                                     <IonCol size="auto">
-                                        <IonImg src={pictogram}></IonImg>
+                                        <IonImg src={images[3]['pictogram']} ></IonImg>
                                     </IonCol>
                             </IonRow>
                         </IonGrid>
@@ -50,17 +74,19 @@ const LoginPictogram: React.FC = () => {
                         <IonGrid class="blue-grid">
                             <IonRow class="ion-justify-content-around"> 
                                     <IonCol size='3'>
-                                        <IonImg src={pictogram}></IonImg>
+                                        <IonImg src={images[0]['pictogram']}></IonImg>
                                     </IonCol>
                                     <IonCol size="3">
-                                        <IonImg src={pictogram}></IonImg>
+                                        <IonImg src={images[1]['pictogram']}></IonImg>
                                     </IonCol>
                                     <IonCol size='3'>
-                                        <IonImg src={pictogram}></IonImg>
+                                        <IonImg src={images[2]['pictogram']}></IonImg>
                                     </IonCol>
                                     <IonCol size="3">
-                                        <IonImg src={pictogram}></IonImg>
-                                    </IonCol>
+                                        <IonImg src={images[3]['pictogram']}></IonImg>
+                                    </IonCol>                                 
+                                                                    
+
                             </IonRow>
                         </IonGrid>                        
                     </IonRow>
@@ -68,7 +94,7 @@ const LoginPictogram: React.FC = () => {
 
                     <IonRow class="row">
                         <IonCol>
-                            <ButtonLogin LoginPictogram></ButtonLogin>
+                            <ButtonLogin LoginPictogram href="/home" ></ButtonLogin>
                         </IonCol>                    
                     </IonRow>   
                 </IonGrid>
@@ -79,3 +105,5 @@ const LoginPictogram: React.FC = () => {
 }
 
 export default LoginPictogram;
+
+
