@@ -66,13 +66,11 @@ const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
         pictograms.push(getPictogram(detail!['_material']['_type']['_name']['_pictogram']));
         pictograms.push(getPictogram(detail!['_material']['_color']['_name']['_pictogram']));
 
-        var label : string = detail['_quantity'] + " " + detail!['_material']['_type']['_name']['_text'] + " " + detail!['_material']['_color']['_name']['_text'];
+        var label: string = detail['_quantity'] + " " + detail!['_material']['_type']['_name']['_text'] + " " + detail!['_material']['_color']['_name']['_text'];
         const quantity = Number(detail['_quantity']);
-        return (<>
-                    <div>
-                        <CounterComponent type={TaskTypes.Material} id={detail['_id']} label={label} pictograms={pictograms} maxCounter={quantity}></CounterComponent>
-                    </div>
-                </>)    
+        return (<div>
+                    <CounterComponent type={TaskTypes.Material} id={detail['_id']} label={label} pictograms={pictograms} maxCounter={quantity}></CounterComponent>
+                </div>)    
     })
 
     const taskName = task!['_task']['_name']['_text'];
