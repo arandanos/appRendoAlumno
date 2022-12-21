@@ -64,9 +64,9 @@ const MaterialTask: React.FC<MaterialTaskProps> = ({match}) => {
     array = details!.map( detail => {
         var pictograms : Array<string> = [];
         pictograms.push(getPictogram(detail!['_material']['_type']['_name']['_pictogram']));
-        pictograms.push(getPictogram(detail!['_material']['_color']['_pictogram']));
+        pictograms.push(getPictogram(detail!['_material']['_color']['_name']['_pictogram']));
 
-        var label : string = detail['_quantity'] + " " + detail!['_material']['_type']['_name']['_text'] + " " + detail!['_material']['_color']['_text'];
+        var label : string = detail['_quantity'] + " " + detail!['_material']['_type']['_name']['_text'] + " " + detail!['_material']['_color']['_name']['_text'];
         const quantity = Number(detail['_quantity']);
         return (<>
                     <div>

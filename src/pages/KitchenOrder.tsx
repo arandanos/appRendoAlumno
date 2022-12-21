@@ -63,6 +63,7 @@ const KitchenOrder: React.FC<KitchenOrderPageProps> = ({match}) => {
     }
     var pictogram : Array<string> = [];
     pictogram.push(getPictogram(detail['_dish']['_name']['_pictogram']));
+
     return (
       <>
         <div>

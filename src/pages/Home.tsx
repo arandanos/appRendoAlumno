@@ -15,18 +15,18 @@ const Home: React.FC = () => {
         <IonGrid class='button-grid'>
           <IonRow class='ion-justify-content-between'>
             <IonCol size='auto'>
-              <ButtonPictogram label="Comanda" pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={true} href="/elige_clase/10"/>
+              <ButtonPictogram label="Comanda" pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square href="/elige_clase/10"/>
             </IonCol>
             <IonCol size='auto'>
-              <ButtonPictogram label="Tareas" pictogram='https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false' square={true} href="/tareas"/>
+              <ButtonPictogram label="Tareas" pictogram='https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false' square href="/tareas"/>
             </IonCol>
           </IonRow>
           <IonRow class='ion-justify-content-between'>
             <IonCol size='auto'>
-              <ButtonPictogram label="Urgente" pictogram='https://api.arasaac.org/api/pictograms/36675?resolution=500&download=false' square={true} href="#"/>
+              <ButtonPictogram label="Urgente" pictogram='https://api.arasaac.org/api/pictograms/36675?resolution=500&download=false' square href="#"/>
             </IonCol>
             <IonCol size="auto">
-              <ButtonPictogram label="Histórico" pictogram='https://api.arasaac.org/api/pictograms/9174?resolution=500&download=false' square={true} href="#"/> 
+              <ButtonPictogram label="Histórico" pictogram='https://api.arasaac.org/api/pictograms/9174?resolution=500&download=false' square href="#"/> 
             </IonCol>
           </IonRow>
         </IonGrid>
