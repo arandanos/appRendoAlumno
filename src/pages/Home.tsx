@@ -15,7 +15,7 @@ const Home: React.FC = () => {
         <IonGrid class='button-grid'>
           <IonRow class='ion-justify-content-between'>
             <IonCol size='auto'>
-              <ButtonPictogram label="Comanda" pictogram='https://api.arasaac.org/api/pictograms/4610?resolution=500&download=false' square={true} href="/elige_clase/10"/>
+              <ButtonPictogram label="Login" pictogram='https://api.arasaac.org/api/pictograms/2485?resolution=500&download=false' square={true} href="/login/1"/>
             </IonCol>
             <IonCol size='auto'>
               <ButtonPictogram label="Tareas" pictogram='https://api.arasaac.org/api/pictograms/2398?resolution=500&download=false' square={true} href="/tareas"/>

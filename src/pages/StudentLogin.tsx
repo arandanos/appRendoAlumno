@@ -43,7 +43,7 @@ const StudentLogin: React.FC<StudentLoginProps> = ({match}) => {
     
     return (
         <>
-          <Header name="AppRendo" noHome={true}/>
+          <Header name="AppRendo" noHome/>
           <IonContent fullscreen>
             <PaginationSt name={'AppRendo'} items={array} classroom={idClase['_name']}></PaginationSt>
           </IonContent>

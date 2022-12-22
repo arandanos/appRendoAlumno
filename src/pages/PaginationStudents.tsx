@@ -59,7 +59,7 @@ const PaginationSt: React.FC<PaginationStProps> = (props: PaginationStProps) => 
       <IonContent fullscreen>
         <IonGrid class="four-students-grid">
           <IonRow class='ion-justify-content-center'>
-            <ButtonPictogram id={''} label={props.classroom} pictogram={"https://api.arasaac.org/api/pictograms/9814?download=false"} square={false} href={"#"} />
+            <ButtonPictogram id='' label={props.classroom} pictogram={"https://api.arasaac.org/api/pictograms/9814?download=false"} square={false} href={"#"} />
           </IonRow>
           <IonRow class='ion-justify-content-between' id="students-grid">
             {props.items.map( item => {
